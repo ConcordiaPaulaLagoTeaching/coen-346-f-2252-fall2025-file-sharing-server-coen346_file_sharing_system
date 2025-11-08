@@ -29,16 +29,21 @@ public class FileSystemManager {
     private final int MAXBLOCKS = 10;
     private static final int BLOCK_SIZE = 128; // Example block size
 
-    private final static FileSystemManager instance; //WW - redline because final, but not initialized in FileSystemManager()
+    private final static FileSystemManager instance; //WW - Singleton instance
 
     private final RandomAccessFile disk; //WW - File representing the disk
     private final ReentrantLock globalLock = new ReentrantLock(); //WW - Global mutex lock for thread safety
 
     private FEntry[] inodeTable; // Array of inodes
     private FNode[] fnodeTable; // Array of FNodes
+    //WW - if freeBlockList is stored in metadata on disk, then metadata size increases to 130 bytes/128 bytes
     private boolean[] freeBlockList; // Bitmap for free blocks WW - NOT SURE IF STORED IN METADATA OR JUST IN MEMORY
     private int totalSize; // Total size of the file system
-    
+
+    //WW - Singleton pattern
+    public static FileSystemManager getInstance() {
+        return instance;
+    }
 
     public FileSystemManager(String filename, int totalSize){ //WW - maybe add throws IOException
         // Initialize the file system manager with a file
@@ -87,9 +92,15 @@ public class FileSystemManager {
                 throw new RuntimeException("Failed to write initial metadata to disk: " + e.getMessage());
             }
 
-            //WW - 3. Set up data blocks
-            //TODO
+            //WW - 3. Set up data blocks??
 
+            //WW - 4. Assign instance
+            try{
+                instance = new FileSystemManager(filename, totalSize);
+                //instance = this;
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to create FileSystemManager instance: " + e.getMessage());
+            }
             
         } else {
             throw new IllegalStateException("FileSystemManager is already initialized.");
