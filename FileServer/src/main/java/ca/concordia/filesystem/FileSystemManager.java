@@ -62,6 +62,31 @@ public class FileSystemManager {
         return count;
     }
 
+    private int findFreeDataBlock(){
+        for (int i = firstDataBlockIndex; i < MAXBLOCKS; i++) {
+            if(freeBlockList[i]) return i;
+        }
+        return -1;
+    }
+
+    private int findFreeNode(){
+        for (int i = 0; i < MAXBLOCKS; i++) {
+            if(fnodesTable[i] == null) return i;
+        }
+        return -1;
+    }
+
+    private long offsetOfFEntry(int i) {
+        return (long) i * FENTRY_BYTES;
+    }
+
+    private long offsetOfFNode(int j) {
+        return (long) fentryRegionBytes + (long) j * FNODE_BYTES;
+    }
+
+    private long offsetOfBlock(int blockIndex) {
+        return (long) blockIndex * BLOCK_SIZE;
+    }
 
     public FileSystemManager(String filename, int totalSize) {
         // Initialize the file system manager with a file
@@ -89,12 +114,7 @@ public class FileSystemManager {
             System.out.println("Disk could not be created.");
             e.printStackTrace();
         }
-
-
-
-
-
-
+        
 //        if(instance == null) {
 //        } else {
 //            throw new IllegalStateException("FileSystemManager is already initialized.");
@@ -126,4 +146,53 @@ public class FileSystemManager {
 
 
     // TODO: Add readFile, writeFile and other required methods,
+
+    void writeFile(String filename, byte[] contents) throws Exception{
+        int fileIndex = findFile(filename);
+        if(fileIndex == -1) throw new Exception("ERROR: file " + filename + " does not exist");
+
+        if(contents.length > BLOCK_SIZE){
+            throw new Exception("ERROR: data too big for a single block");
+        }
+
+        FEntry entry = fentryTable[fileIndex];
+        if(entry.getFirstBlock() != -1){
+            FNode old = fnodesTable[entry.getFirstBlock()];
+            if(old != null && old.getBlockIndex()>=0){
+                long off = offsetOfBlock(old.getBlockIndex());
+                disk.seek(off);
+                disk.write(new byte[BLOCK_SIZE]);
+                freeBlockList[old.getBlockIndex()] = true;
+            }
+            fnodesTable[entry.getFirstBlock()] = null;
+            entry.setFirstBlock((short) -1);
+        }
+
+        int block = findFreeDataBlock();
+        if(block == -1) {
+            throw new Exception("ERROR: file too large (no free blocks)");
+        }
+
+        long offset = offsetOfBlock(block);
+        disk.seek(offset);
+        disk.write(contents);
+        if(contents.length < BLOCK_SIZE){
+            disk.write(new byte[BLOCK_SIZE - contents.length]);
+        }
+
+        int nodeIndex = findFreeNode();
+        if(nodeIndex == -1) throw new Exception("ERROR: no free FNode slots");
+
+        FNode node = new FNode(block);
+        node.setNext(-1);
+        fnodesTable[nodeIndex] = node;
+
+        entry.setFirstBlock((short) nodeIndex);
+        entry.setFilesize((short) contents.length);
+        freeBlockList[block] = false;
+
+        System.out.println("Wrote " + contents.length + " bytes to " + filename + " in block " + block);
+    }
+
+
 }
