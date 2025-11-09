@@ -46,7 +46,7 @@ public class FileSystemManager {
     // Singleton instance
     private static FileSystemManager instance;
 
-    //Private constructor for singleton pattern
+    // Private constructor for singleton pattern
     private FileSystemManager(String filename, int totalSize, int maxFiles, int maxBlocks, int blockSize) throws IOException {
         this.MAXFILES = maxFiles;
         this.MAXBLOCKS = maxBlocks;
@@ -130,9 +130,7 @@ public class FileSystemManager {
         }
     }
 
-    /**
-     * Load metadata from disk
-     */
+    // Load metadata from disk
     private void loadMetadata() throws IOException {
         disk.seek(0);
         
@@ -385,7 +383,7 @@ public class FileSystemManager {
         }
     }
 
-    //helper methods
+    // Helper methods
 
     // Find FEntry index by filename
     private int findFileEntry(String filename) {
