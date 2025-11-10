@@ -36,3 +36,11 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Build directories (auto-generated)
+/out/
+/target/
+/build/  
+
+# Virtual disk used for testing FileSystemManager
+virtual_disk.dat
