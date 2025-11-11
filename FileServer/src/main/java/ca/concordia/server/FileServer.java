@@ -22,12 +22,14 @@ public class FileServer {
     private final AtomicInteger readCount = new AtomicInteger(0);
 
     public FileServer(int port, String fileSystemName, int totalSize){
-        // Initialize the FileSystemManager
-        //(String filename, int totalSize, int maxFiles, int maxBlocks, int blockSize)
-        //TODO
-        FileSystemManager fsManager = new FileSystemManager(fileSystemName, totalSize);
-        this.fsManager = fsManager;
-        this.port = port;
+        try{
+            FileSystemManager fsManager = FileSystemManager.getInstance(fileSystemName, totalSize, 8, 16, 128);
+            this.fsManager = fsManager;
+            this.port = port;
+        } catch (Exception e){
+            e.printStackTrace();
+            System.err.println("Could not initialize FileSystemManager.");
+        }
     }
 
     public void start(){
