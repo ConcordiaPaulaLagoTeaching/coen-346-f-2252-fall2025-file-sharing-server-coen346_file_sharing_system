@@ -17,7 +17,7 @@ public class FileSystemManager {
     private static final int BLOCK_SIZE = 128; // Example block size
 
     private FEntry[] inodeTable; // Array of inodes
-    private boolean[] freeBlockLists; // Bitmap for free blocks
+    private boolean[] freeBlockList; // Bitmap for free blocks
 
     public FileSystemManager(String filename, int totalSize) throws FileNotFoundException {
         // Initialize the file system manager with a file
