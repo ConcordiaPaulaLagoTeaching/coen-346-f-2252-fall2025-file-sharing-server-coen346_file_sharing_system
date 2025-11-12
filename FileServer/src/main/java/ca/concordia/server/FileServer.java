@@ -89,6 +89,43 @@ public class FileServer {
                                 writer.flush();
                                 break;
 
+                            case "WRITE":
+                                if (parts.length < 2) {
+                                    writer.println("ERROR: missing filename or data");
+                                    break;
+                                }
+
+                                // Split filename and data content
+                                String[] writeParts = parts[1].split("\\s+", 2);
+                                if (writeParts.length < 2) {
+                                    writer.println("ERROR: missing data");
+                                    break;
+                                }
+
+                                String writeName = writeParts[0].trim();
+                                String data = writeParts[1];
+
+                                try {
+                                    fsManager.writeFile(writeName, data);
+                                    writer.println("SUCCESS: wrote " + data.length() + 
+                                                   " bytes to file " + writeName);
+                                } catch (Exception e) {
+                                    writer.println(e.getMessage());
+                                }
+                                writer.flush();
+                                break;
+
+
+
+
+
+
+
+
+
+
+
+
                                 case "DELETE":
                                 if (parts.length < 2) {
                                     writer.println("ERROR: missing filename");

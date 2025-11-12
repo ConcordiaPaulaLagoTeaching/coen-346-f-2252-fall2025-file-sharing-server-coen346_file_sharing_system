@@ -45,6 +45,7 @@ public class FileSystemManager {
         return instance;
     }
 
+    // CREATE (create a new file with given name)
     public void createFile(String fileName) throws Exception {
         globalLock.lock(); // Acquire global lock to ensure thread safety
         try {
@@ -98,7 +99,7 @@ public class FileSystemManager {
         }
     }
 
-    // Return list of all filenames in filesystem, if none return empty array
+    // LIST (return list of all filenames in filesystem, if none return empty array)
     public String[] listFiles() {
         globalLock.lock(); // thread safety when reading inode table
         try {
@@ -114,7 +115,58 @@ public class FileSystemManager {
         }
     }
 
-    // Delete a file by name and free its allocated blocks
+    // WRITE (write data to an existing file)
+    public void writeFile(String fileName, String data) throws Exception {
+        globalLock.lock(); // Ensure thread safety
+        try {
+            // Find the file
+            FEntry target = null;
+            for (FEntry entry : inodeTable) {
+                if (entry != null && entry.getFilename().equals(fileName)) {
+                    target = entry;
+                    break;
+                }
+            }
+
+            // If file does not exist
+            if (target == null) {
+                throw new Exception("ERROR: file " + fileName + " does not exist");
+            }
+
+            // Convert string data to bytes
+            byte[] content = data.getBytes();
+            int numBlocksNeeded = (int) Math.ceil((double) content.length / BLOCK_SIZE);
+
+            // Ensure there are enough free blocks
+            int freeCount = 0;
+            for (boolean free : freeBlockList) {
+                if (free) freeCount++;
+            }
+            if (numBlocksNeeded > freeCount + 1) { // +1 for current block
+                throw new Exception("ERROR: file too large");
+            }
+
+            // Overwrite existing starting block and write data
+            short startBlock = target.getFirstBlock();
+            disk.seek(startBlock * BLOCK_SIZE);
+            disk.write(content, 0, Math.min(content.length, BLOCK_SIZE));
+
+            // Update file size metadata
+            target.setFilesize((short) content.length);
+
+        } finally {
+            globalLock.unlock();
+        }
+    }
+
+
+
+
+
+
+
+
+    // DELETE (delete a file by name, free its allocated blocks, overwrite to zeros)
     public void deleteFile(String fileName) throws Exception {
         globalLock.lock(); // Ensure thread safety
         try {
