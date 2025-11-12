@@ -218,34 +218,58 @@ public class FileSystemManager {
         lock.writeLock().lock(); // Ensure thread safety
         try {
             // Find file
-            int foundIndex = -1;
+            int fEntryIndex = -1;
             for (int i = 0; i < MAXFILES; i++) {
                 if (fEntryTable[i] != null && fEntryTable[i].getFilename().equals(fileName)) {
-                    foundIndex = i;
+                    fEntryIndex = i;
                     break;
                 }
             }
 
-            // If not found, error
-            if (foundIndex == -1) {
+            // Couldn't find the file
+            if (fEntryIndex == -1) {
                 throw new Exception("ERROR: file " + fileName + " does not exist");
             }
 
-            // Free blocks and overwrite with zeros
-            short startBlock = fEntryTable[foundIndex].getFirstBlock();
-            int size = fEntryTable[foundIndex].getFilesize();
-            int blocksToFree = (int) Math.ceil((double) size / BLOCK_SIZE);
-            for (int i = 0; i < blocksToFree; i++) {
-                int blockIndex = (startBlock + i) % MAXBLOCKS;
-                freeBlockList[blockIndex] = true;
-                disk.seek(blockIndex * BLOCK_SIZE);
-                disk.write(new byte[BLOCK_SIZE]); // zero data
-            }
+            // Free all associated blocks and FNodes
+            freeFileBlocks(fEntryIndex);
 
-            fEntryTable[foundIndex] = null;
-
+            fEntryTable[fEntryIndex] = null;
         } finally {
             lock.writeLock().unlock();
         }
+    }
+
+    private void freeFileBlocks(int fEntryIndex) throws IOException {
+        FEntry entry = fEntryTable[fEntryIndex];
+        if (entry == null || entry.getFirstBlock() == -1) {
+            return; // No blocks to free
+        }
+
+        int currentFNodeIndex = entry.getFirstBlock();
+        byte[] zeros = new byte[BLOCK_SIZE];
+
+        while(currentFNodeIndex != -1) {
+            int blockIndex = fNodeTable[currentFNodeIndex].getBlockIndex();
+
+            // Overwrite data with zeroes
+            disk.seek((long) blockIndex * BLOCK_SIZE);
+            disk.write(zeros);
+
+            // Mark block as free
+            freeBlockList[blockIndex] = true;
+
+            int nextFNodeIndex = fNodeTable[currentFNodeIndex].getNext();
+
+            // Reset and free FNode
+            fNodeTable[currentFNodeIndex].setNext(-1);
+            fNodeTable[currentFNodeIndex].setBlockIndex(-1);
+
+            currentFNodeIndex = nextFNodeIndex;
+        }
+
+        // Update FEntry to reflect cleared blocks
+        entry.setFirstBlock((short) -1);
+        entry.setFilesize((short) 0);
     }
 }
