@@ -39,7 +39,7 @@ public class FileSystemManager {
     }
 
     // Singleton getInstance method
-    public static synchronized FileSystemManager getInstance(String filename, int totalSize) throws Exception {
+    public static synchronized FileSystemManager getInstance(String filename) throws IOException {
         if (instance == null) {
             instance = new FileSystemManager(filename);
         }
@@ -63,38 +63,20 @@ public class FileSystemManager {
             }
 
             // Find a free inode slot
-            int freeIndex = -1;
+            int freeFEntryIndex = -1;
             for (int i = 0; i < MAXFILES; i++) {
                 if (fEntryTable[i] == null) {
-                    freeIndex = i;
+                    freeFEntryIndex = i;
                     break;
                 }
             }
-            if (freeIndex == -1) {
-                throw new Exception("ERROR: file too large");
+
+            // Couldn't find a free node
+            if (freeFEntryIndex == -1) {
+                throw new Exception("ERROR: Maximum number of files reached");
             }
 
-            // Find a free block
-            int blockIndex = -1;
-            for (int i = 0; i < MAXBLOCKS; i++) {
-                if (freeBlockList[i]) {
-                    blockIndex = i;
-                    freeBlockList[i] = false; // if not free, mark as used
-                    break;
-                }
-            }
-            if (blockIndex == -1) {
-                throw new Exception("ERROR: file too large");
-            }
-
-            // Create and store new FEntry
-            FEntry newEntry = new FEntry(fileName, (short) 0, (short) blockIndex);
-            fEntryTable[freeIndex] = newEntry;
-
-            disk.seek(blockIndex * BLOCK_SIZE);
-            byte[] empty = new byte[BLOCK_SIZE];
-            disk.write(empty);
-
+            fEntryTable[freeFEntryIndex] = new FEntry(fileName, (short) 0, (short) -1);
         } finally {
             lock.writeLock().unlock(); // release lock in all cases
         }
