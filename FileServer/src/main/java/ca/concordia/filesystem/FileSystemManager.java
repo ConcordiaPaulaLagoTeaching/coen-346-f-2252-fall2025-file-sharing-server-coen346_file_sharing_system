@@ -69,7 +69,7 @@ public class FileSystemManager {
                 }
             }
             if (freeIndex == -1) {
-                throw new Exception("ERROR: maximum file count reached");
+                throw new Exception("ERROR: file too large");
             }
 
             // Find a free block

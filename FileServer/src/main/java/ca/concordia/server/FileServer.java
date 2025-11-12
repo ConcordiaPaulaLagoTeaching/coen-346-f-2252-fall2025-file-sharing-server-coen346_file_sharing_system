@@ -63,7 +63,7 @@ public class FileServer {
                                     String msg = e.getMessage();
                                     if (msg.contains("already exists")) {
                                         writer.println("ERROR: file " + filename + " already exists");
-                                    } else if (msg.contains("Maximum file count") || msg.contains("Disk is full")) {
+                                    } else if (msg.contains("file too large") || msg.contains("Disk is full")) {
                                         writer.println("ERROR: file too large");
                                     } else {
                                         writer.println("ERROR: " + msg);
@@ -114,5 +114,3 @@ public class FileServer {
             System.err.println("Could not start server on port " + port);
         }
     }
-
-}
