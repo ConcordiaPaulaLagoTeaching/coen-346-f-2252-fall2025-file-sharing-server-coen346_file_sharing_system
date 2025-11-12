@@ -115,19 +115,23 @@ public class FileSystemManager {
             }
 
             int size = target.getFilesize();
-            if (size <= 0) return new byte[0];
+            if (size <= 0) {
+                return new byte[0];
+            }
 
-            short startBlock = target.getFirstBlock();
-            int blocksToRead = (int) Math.ceil((double) size / BLOCK_SIZE);
             byte[] buffer = new byte[size];
             int bytesRead = 0;
+            int currentFNodeIndex = target.getFirstBlock();
 
-            for (int i = 0; i < blocksToRead; i++) {
-                int blockIndex = (startBlock + i) % MAXBLOCKS;
-                disk.seek(blockIndex * BLOCK_SIZE);
+            while(currentFNodeIndex != -1) {
+                int blockIndex = fNodeTable[currentFNodeIndex].getBlockIndex();
+                disk.seek((long) blockIndex * BLOCK_SIZE);
+
                 int toRead = Math.min(BLOCK_SIZE, size - bytesRead);
                 disk.read(buffer, bytesRead, toRead);
                 bytesRead += toRead;
+
+                currentFNodeIndex = fNodeTable[currentFNodeIndex].getNext();
             }
 
             return buffer;
@@ -136,26 +140,26 @@ public class FileSystemManager {
         }
     }
 
- // WRITE (write data to an existing file)
+    // WRITE (write data to an existing file)
     public void writeFile(String fileName, byte[] contents) throws Exception {
-    lock.writeLock().lock(); // Ensure thread safety
-    List<Integer> allocatedBlocks = new ArrayList<>();
-    try {
-        // Find the file
-        FEntry target = null;
-        for (FEntry entry : fEntryTable) {
-            if (entry != null && entry.getFilename().equals(fileName)) {
-                target = entry;
-                break;
+        lock.writeLock().lock(); // Ensure thread safety
+        List<Integer> allocatedBlocks = new ArrayList<>();
+        try {
+            // Find the file
+            FEntry target = null;
+            for (FEntry entry : fEntryTable) {
+                if (entry != null && entry.getFilename().equals(fileName)) {
+                    target = entry;
+                    break;
+                }
             }
-        }
 
-        if (target == null) {
-            throw new Exception("ERROR: file " + fileName + " does not exist");
-        }
+            if (target == null) {
+                throw new Exception("ERROR: file " + fileName + " does not exist");
+            }
 
-        int totalBytes = contents.length;
-        int blocksNeeded = (int) Math.ceil((double) totalBytes / BLOCK_SIZE);
+            int totalBytes = contents.length;
+            int blocksNeeded = (int) Math.ceil((double) totalBytes / BLOCK_SIZE);
 
             // Check free blocks
             int freeCount = 0;

@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 import ca.concordia.filesystem.FileSystemManager;
 
@@ -11,10 +12,9 @@ public class FileServer {
 
     private FileSystemManager fsManager;
     private int port;
-    public FileServer(int port, String fileSystemName, int totalSize){
-        // Initialize the FileSystemManager using Singleton instance, replace constructor call with getInstance()
+    public FileServer(int port, String fileSystemName) {
         try {
-            this.fsManager = FileSystemManager.getInstance(fileSystemName, 10 * 128);
+            this.fsManager = FileSystemManager.getInstance(fileSystemName);
         } catch (Exception e) {
             throw new RuntimeException("Failed to initialize FileSystemManager", e);
         }
@@ -91,28 +91,18 @@ public class FileServer {
 
                             case "WRITE":
                                 if (parts.length < 2) {
-                                    writer.println("ERROR: missing filename or data");
+                                    writer.println("ERROR: missing filename and/or content");
                                     break;
                                 }
-
-                                // Split filename and data content
                                 String[] writeParts = parts[1].split("\\s+", 2);
                                 if (writeParts.length < 2) {
-                                    writer.println("ERROR: missing data");
+                                    writer.println("ERROR: missing content");
                                     break;
                                 }
-
-                                String writeName = writeParts[0].trim();
-                                String data = writeParts[1];
-
-                                try {
-                                    fsManager.writeFile(writeName, data);
-                                    writer.println("SUCCESS: wrote " + data.length() + 
-                                                   " bytes to file " + writeName);
-                                } catch (Exception e) {
-                                    writer.println(e.getMessage());
-                                }
-                                writer.flush();
+                                String writeName = writeParts[0];
+                                byte[] data = writeParts[1].getBytes(StandardCharsets.UTF_8);
+                                fsManager.writeFile(writeName, data);
+                                writer.println("SUCCESS: Wrote " + data.length + " bytes to file '" + writeName + "'");
                                 break;
 
                             case "READ":
@@ -120,20 +110,8 @@ public class FileServer {
                                     writer.println("ERROR: missing filename");
                                     break;
                                 }
-
-                                String readName = parts[1].trim();
-
-                                try {
-                                    String content = fsManager.readFile(readName);
-                                    if (content.isEmpty()) {
-                                        writer.println("(empty file)");
-                                    } else {
-                                        writer.println(content);
-                                    }
-                                } catch (Exception e) {
-                                    writer.println(e.getMessage());
-                                }
-                                writer.flush();
+                                byte[] content = fsManager.readFile(parts[1]);
+                                writer.println(new String(content, StandardCharsets.UTF_8));
                                 break;
 
                                 case "DELETE":
