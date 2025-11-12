@@ -1,65 +1,49 @@
 package ca.concordia.server;
 import ca.concordia.filesystem.FileSystemManager;
+import ca.concordia.server.ServerThread;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FileServer {
 
     private FileSystemManager fsManager;
     private int port;
+
+    //semaphores for concurrency control
+    private final Semaphore mutex = new Semaphore(1);
+    private final Semaphore isEmpty = new Semaphore(1);
+    private final Semaphore writeLock = new Semaphore(1);
+    private final AtomicInteger readCount = new AtomicInteger(0);
+
     public FileServer(int port, String fileSystemName, int totalSize){
-        // Initialize the FileSystemManager
-        FileSystemManager fsManager = new FileSystemManager(fileSystemName,
-                10*128 );
-        this.fsManager = fsManager;
-        this.port = port;
+        try{
+            FileSystemManager fsManager = FileSystemManager.getInstance(fileSystemName, totalSize, 8, 16, 128);
+            this.fsManager = fsManager;
+            this.port = port;
+        } catch (Exception e){
+            e.printStackTrace();
+            System.err.println("Could not initialize FileSystemManager.");
+        }
     }
 
     public void start(){
-        try (ServerSocket serverSocket = new ServerSocket(12345)) {
-            System.out.println("Server started. Listening on port 12345...");
+        try (ServerSocket serverSocket = new ServerSocket(this.port)) {
+            System.out.println("Server started. Listening on port " + this.port +"...");
 
             while (true) {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Handling client: " + clientSocket);
-                try (
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                        PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)
-                ) {
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        System.out.println("Received from client: " + line);
-                        String[] parts = line.split(" ");
-                        String command = parts[0].toUpperCase();
 
-                        switch (command) {
-                            case "CREATE":
-                                fsManager.createFile(parts[1]);
-                                writer.println("SUCCESS: File '" + parts[1] + "' created.");
-                                writer.flush();
-                                break;
-                            //TODO: Implement other commands READ, WRITE, DELETE, LIST
-                            case "QUIT":
-                                writer.println("SUCCESS: Disconnecting.");
-                                return;
-                            default:
-                                writer.println("ERROR: Unknown command.");
-                                break;
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        clientSocket.close();
-                    } catch (Exception e) {
-                        // Ignore
-                    }
-                }
+                //create thread to handle this client
+                ServerThread clientHandler = new ServerThread(clientSocket, fsManager, mutex, isEmpty, writeLock, readCount);
+                clientHandler.start();
+
             }
         } catch (Exception e) {
             e.printStackTrace();
