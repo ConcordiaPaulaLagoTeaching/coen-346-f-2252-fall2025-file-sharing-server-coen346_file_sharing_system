@@ -1,10 +1,11 @@
 package ca.concordia.filesystem;
 
 import java.io.IOException;
-import java.io.RandomAccessFile; // for RandomAccessFile exception handling
-import java.util.ArrayList; // for listFiles()
-import java.util.List; // for listFiles()
-import java.util.concurrent.locks.ReentrantLock;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import ca.concordia.filesystem.datastructures.FEntry;
 
@@ -12,11 +13,11 @@ public class FileSystemManager {
 
     private final int MAXFILES = 5;
     private final int MAXBLOCKS = 10;
-    private static int BLOCK_SIZE = 128; // Example block size
+    private static int BLOCK_SIZE = 128;
 
     private static FileSystemManager instance;
     private final RandomAccessFile disk;
-    private final ReentrantLock globalLock = new ReentrantLock();
+    private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
     private FEntry[] inodeTable; // Array of inodes
     private boolean[] freeBlockList; // Bitmap for free blocks
@@ -43,7 +44,7 @@ public class FileSystemManager {
 
     // CREATE (create a new file with given name)
     public void createFile(String fileName) throws Exception {
-        globalLock.lock(); // Acquire global lock to ensure thread safety
+        lock.writeLock().lock(); // Acquire global lock to ensure thread safety
         try {
             // Check filename length
             if (fileName.length() > 11) {
@@ -91,13 +92,13 @@ public class FileSystemManager {
             disk.write(empty);
 
         } finally {
-            globalLock.unlock(); // release lock in all cases
+            lock.writeLock().unlock(); // release lock in all cases
         }
     }
 
     // LIST (return list of all filenames in filesystem, if none return empty array)
     public String[] listFiles() {
-        globalLock.lock(); // thread safety when reading inode table
+        lock.readLock().lock(); // thread safety when reading inode table
         try {
             List<String> files = new ArrayList<>();
             for (FEntry entry : inodeTable) {
@@ -107,13 +108,13 @@ public class FileSystemManager {
             }
             return files.toArray(new String[0]);
         } finally {
-            globalLock.unlock();
+            lock.readLock().unlock();
         }
     }
 
     // READ
     public byte[] readFile(String fileName) throws Exception {
-        globalLock.lock();
+        lock.readLock().lock();
         try {
             FEntry target = null;
             for (FEntry entry : inodeTable) {
@@ -145,13 +146,13 @@ public class FileSystemManager {
 
             return buffer;
         } finally {
-            globalLock.unlock();
+            lock.readLock().unlock();
         }
     }
 
  // WRITE (write data to an existing file)
     public void writeFile(String fileName, byte[] contents) throws Exception {
-    globalLock.lock(); // Ensure thread safety
+    lock.writeLock().lock(); // Ensure thread safety
     List<Integer> allocatedBlocks = new ArrayList<>();
     try {
         // Find the file
@@ -222,13 +223,13 @@ public class FileSystemManager {
             }
             throw e;
         } finally {
-            globalLock.unlock();
+            lock.writeLock().unlock();
         }
     }
 
     // DELETE (delete a file by name, free its allocated blocks, overwrite to zeros)
     public void deleteFile(String fileName) throws Exception {
-        globalLock.lock(); // Ensure thread safety
+        lock.writeLock().lock(); // Ensure thread safety
         try {
             // Find file
             int foundIndex = -1;
@@ -258,7 +259,7 @@ public class FileSystemManager {
             inodeTable[foundIndex] = null;
 
         } finally {
-            globalLock.unlock();
+            lock.writeLock().unlock();
         }
     }
 }
