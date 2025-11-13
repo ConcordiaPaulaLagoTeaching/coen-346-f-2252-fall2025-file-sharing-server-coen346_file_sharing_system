@@ -115,7 +115,7 @@ public class FileSystemManager {
             }
 
             int size = target.getFilesize();
-            if (size <= 0) {
+            if (size == 0) {
                 return new byte[0];
             }
 
