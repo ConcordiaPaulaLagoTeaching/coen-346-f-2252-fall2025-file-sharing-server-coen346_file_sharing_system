@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="ServerTests" time="2.8" tests="4" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="ServerTests" time="2.659" tests="4" errors="0" skipped="0" failures="1">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
@@ -14,9 +14,8 @@
     <property name="os.name" value="Linux"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/opt/java/11.0.14/lib"/>
-    <property name="sun.java.command" value="/workspaces/file-sharing-server-mint/FileServer/target/surefire/surefirebooter-20251113203053228_3.jar /workspaces/file-sharing-server-mint/FileServer/target/surefire 2025-11-13T20-30-53_120-jvmRun1 surefire-20251113203053228_1tmp surefire_0-20251113203053228_2tmp"/>
+    <property name="sun.java.command" value="/workspaces/file-sharing-server-mint/FileServer/target/surefire/surefirebooter-20251113220755218_3.jar /workspaces/file-sharing-server-mint/FileServer/target/surefire 2025-11-13T22-07-55_011-jvmRun1 surefire-20251113220755218_1tmp surefire_0-20251113220755218_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="ServerTests"/>
     <property name="surefire.test.class.path" value="/workspaces/file-sharing-server-mint/FileServer/target/test-classes:/workspaces/file-sharing-server-mint/FileServer/target/classes:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.3/junit-jupiter-5.9.3.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.3/junit-jupiter-api-5.9.3.jar:/home/codespace/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar:/home/codespace/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.3/junit-jupiter-params-5.9.3.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.3/junit-jupiter-engine-5.9.3.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/codespace"/>
@@ -31,7 +30,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/workspaces/file-sharing-server-mint/FileServer/target/surefire/surefirebooter-20251113203053228_3.jar"/>
+    <property name="surefire.real.class.path" value="/workspaces/file-sharing-server-mint/FileServer/target/surefire/surefirebooter-20251113220755218_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.14.1+1-LTS"/>
     <property name="user.name" value="codespace"/>
@@ -57,32 +56,33 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="testMalformedInputDoesNotCrashServer" classname="ServerTests" time="0.075">
-    <system-out><![CDATA[Test server is ready on port 12345
+  <testcase name="testMalformedInputDoesNotCrashServer" classname="ServerTests" time="0.045">
+    <system-out><![CDATA[[DEBUG] Creating new FileSystemManager instance. Old instance closed: false
+Test server is ready on port 12345
 Server started. Listening on port 12345...
-Client connected: /127.0.0.1:55770
-Client disconnected: /127.0.0.1:55770
-Client connected: /127.0.0.1:55780
-Client disconnected: /127.0.0.1:55780
-Client connected: /127.0.0.1:55786
+Client connected: /127.0.0.1:53116
+Client disconnected: /127.0.0.1:53116
+Client connected: /127.0.0.1:53124
+Client disconnected: /127.0.0.1:53124
+Client connected: /127.0.0.1:53136
 Received from client: BADCOMMAND
-Client disconnected: /127.0.0.1:55786
-Client connected: /127.0.0.1:55798
+Client disconnected: /127.0.0.1:53136
+Client connected: /127.0.0.1:53144
 Received from client: CREATE
-Client connected: /127.0.0.1:55814
-Client disconnected: /127.0.0.1:55798
+Client disconnected: /127.0.0.1:53144
+Client connected: /127.0.0.1:53146
 Received from client: WRITE
-Client disconnected: /127.0.0.1:55814
-Client connected: /127.0.0.1:55818
+Client disconnected: /127.0.0.1:53146
+Client connected: /127.0.0.1:53158
 Received from client: READ
-Client connected: /127.0.0.1:55826
+Client disconnected: /127.0.0.1:53158
+Client connected: /127.0.0.1:53174
 Received from client: DELETE
-Client disconnected: /127.0.0.1:55818
-Client disconnected: /127.0.0.1:55826
+Client disconnected: /127.0.0.1:53174
 ]]></system-out>
   </testcase>
-  <testcase name="testServerRestartPersistence" classname="ServerTests" time="1.937">
-    <failure message="File data not persisted. Got: ERROR: Stream Closed ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: File data not persisted. Got: ERROR: Stream Closed ==> expected: <true> but was: <false>
+  <testcase name="testServerRestartPersistence" classname="ServerTests" time="1.884">
+    <failure message="File data not persisted. Got: ERROR: ERROR: File system unavailable (disk deleted or inaccessible) ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: File data not persisted. Got: ERROR: ERROR: File system unavailable (disk deleted or inaccessible) ==> expected: <true> but was: <false>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
 	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
@@ -162,27 +162,28 @@ Client disconnected: /127.0.0.1:55826
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></failure>
-    <system-out><![CDATA[Client connected: /127.0.0.1:55840
-Test server is ready on port 12345
-Client disconnected: /127.0.0.1:55840
-Client connected: /127.0.0.1:55850
+    <system-out><![CDATA[Test server is ready on port 12345
+Client connected: /127.0.0.1:53178
+Client connected: /127.0.0.1:53192
+Client disconnected: /127.0.0.1:53178
 Received from client: CREATE persist
-Client disconnected: /127.0.0.1:55850
+Client disconnected: /127.0.0.1:53192
 CREATE response: SUCCESS: File 'persist' created.
-Client connected: /127.0.0.1:55862
+Client connected: /127.0.0.1:53196
 Received from client: WRITE persist saveddata
-Client disconnected: /127.0.0.1:55862
 WRITE response: SUCCESS: File 'persist' written.
 Shutting down server...
+Client disconnected: /127.0.0.1:53196
 Server stopped successfully.
 Test server stopped
+[DEBUG] Creating new FileSystemManager instance. Old instance closed: true
+Client connected: /127.0.0.1:50098
 Test server is ready on port 12345
-Client connected: /127.0.0.1:55878
-Client connected: /127.0.0.1:55884
+Client connected: /127.0.0.1:50114
+Client disconnected: /127.0.0.1:50098
 Received from client: READ persist
-Client disconnected: /127.0.0.1:55878
-READ response: ERROR: Stream Closed
-Client disconnected: /127.0.0.1:55884
+READ response: ERROR: ERROR: File system unavailable (disk deleted or inaccessible)
+Client disconnected: /127.0.0.1:50114
 ]]></system-out>
     <system-err><![CDATA[ERROR: Port 12345 is already in use. Cannot start server.
 Try: lsof -i :12345 to find the process using this port
@@ -206,324 +207,334 @@ java.net.BindException: Address already in use (Bind failed)
 	at ca.concordia.server.FileServer.runServer(FileServer.java:64)
 	at ca.concordia.server.FileServer.lambda$start$0(FileServer.java:29)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-java.io.IOException: Stream Closed
-	at java.base/java.io.RandomAccessFile.seek0(Native Method)
-	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:591)
-	at ca.concordia.filesystem.FileSystemManager.readDataBlock(FileSystemManager.java:516)
-	at ca.concordia.filesystem.FileSystemManager.readFile(FileSystemManager.java:374)
+java.lang.Exception: ERROR: File system unavailable (disk deleted or inaccessible)
+	at ca.concordia.filesystem.FileSystemManager.readFile(FileSystemManager.java:386)
 	at ca.concordia.server.ServerThread.run(ServerThread.java:68)
 ]]></system-err>
   </testcase>
-  <testcase name="testServerRecoversAfterErrorCommand" classname="ServerTests" time="0.014">
-    <system-out><![CDATA[Client connected: /127.0.0.1:55888
+  <testcase name="testServerRecoversAfterErrorCommand" classname="ServerTests" time="0.005">
+    <system-out><![CDATA[Client connected: /127.0.0.1:50118
 Received from client: WRIT invalid
-Client connected: /127.0.0.1:55896
-Client disconnected: /127.0.0.1:55888
+Client connected: /127.0.0.1:50128
 Received from client: LIST
+Client disconnected: /127.0.0.1:50118
 ]]></system-out>
   </testcase>
-  <testcase name="testHandlesHundredsOfClientsQuickly" classname="ServerTests" time="0.17">
-    <system-out><![CDATA[Client disconnected: /127.0.0.1:55896
-Client connected: /127.0.0.1:55904
-Client connected: /127.0.0.1:55908
-Client connected: /127.0.0.1:55916
-Client connected: /127.0.0.1:55928
-Client connected: /127.0.0.1:55944
+  <testcase name="testHandlesHundredsOfClientsQuickly" classname="ServerTests" time="0.113">
+    <system-out><![CDATA[Client disconnected: /127.0.0.1:50128
+Client connected: /127.0.0.1:50142
+Client connected: /127.0.0.1:50144
 Received from client: LIST
+Client connected: /127.0.0.1:50148
+Client disconnected: /127.0.0.1:50142
+Client connected: /127.0.0.1:50154
+Client connected: /127.0.0.1:50166
+Client connected: /127.0.0.1:50170
+Client connected: /127.0.0.1:50184
+Client connected: /127.0.0.1:50198
+Client connected: /127.0.0.1:50216
+Client connected: /127.0.0.1:50218
 Received from client: LIST
-Client disconnected: /127.0.0.1:55904
+Client connected: /127.0.0.1:50202
+Client disconnected: /127.0.0.1:50148
+Client connected: /127.0.0.1:50234
+Client connected: /127.0.0.1:50250
 Received from client: LIST
-Client connected: /127.0.0.1:55952
-Client disconnected: /127.0.0.1:55908
 Received from client: LIST
-Client disconnected: /127.0.0.1:55916
 Received from client: LIST
-Client disconnected: /127.0.0.1:55944
-Client connected: /127.0.0.1:55964
-Client connected: /127.0.0.1:55966
+Client disconnected: /127.0.0.1:50144
+Client disconnected: /127.0.0.1:50198
 Received from client: LIST
-Client disconnected: /127.0.0.1:55928
+Client connected: /127.0.0.1:50266
 Received from client: LIST
-Client disconnected: /127.0.0.1:55964
-Client disconnected: /127.0.0.1:55952
-Client connected: /127.0.0.1:55980
 Received from client: LIST
-Client connected: /127.0.0.1:55982
-Client connected: /127.0.0.1:55994
-Client disconnected: /127.0.0.1:55966
-Client connected: /127.0.0.1:56004
 Received from client: LIST
+Client disconnected: /127.0.0.1:50166
 Received from client: LIST
+Client disconnected: /127.0.0.1:50184
 Received from client: LIST
-Client disconnected: /127.0.0.1:55994
-Client disconnected: /127.0.0.1:55982
-Client connected: /127.0.0.1:56008
-Client disconnected: /127.0.0.1:55980
-Client connected: /127.0.0.1:56024
-Client connected: /127.0.0.1:56034
 Received from client: LIST
-Client connected: /127.0.0.1:56040
+Client disconnected: /127.0.0.1:50154
+Client disconnected: /127.0.0.1:50216
+Client disconnected: /127.0.0.1:50218
+Client disconnected: /127.0.0.1:50202
+Client disconnected: /127.0.0.1:50170
+Client disconnected: /127.0.0.1:50234
+Client connected: /127.0.0.1:50270
 Received from client: LIST
-Client disconnected: /127.0.0.1:56008
-Client disconnected: /127.0.0.1:56004
-Client connected: /127.0.0.1:56052
 Received from client: LIST
+Client disconnected: /127.0.0.1:50266
+Client disconnected: /127.0.0.1:50250
+Client connected: /127.0.0.1:50280
+Client connected: /127.0.0.1:50292
+Client connected: /127.0.0.1:50306
+Client connected: /127.0.0.1:50310
+Client connected: /127.0.0.1:50322
+Client connected: /127.0.0.1:50338
+Client connected: /127.0.0.1:50348
 Received from client: LIST
-Client disconnected: /127.0.0.1:56034
-Client connected: /127.0.0.1:56058
-Client connected: /127.0.0.1:56074
-Client disconnected: /127.0.0.1:56024
-Client connected: /127.0.0.1:56082
+Client disconnected: /127.0.0.1:50270
 Received from client: LIST
 Received from client: LIST
-Client disconnected: /127.0.0.1:56052
-Client connected: /127.0.0.1:56094
-Client disconnected: /127.0.0.1:56040
-Client connected: /127.0.0.1:56104
+Client connected: /127.0.0.1:50354
 Received from client: LIST
 Received from client: LIST
 Received from client: LIST
-Client disconnected: /127.0.0.1:56082
-Client disconnected: /127.0.0.1:56058
-Client disconnected: /127.0.0.1:56074
-Client connected: /127.0.0.1:56112
-Client connected: /127.0.0.1:56116
-Client connected: /127.0.0.1:56128
-Client connected: /127.0.0.1:56142
+Client disconnected: /127.0.0.1:50280
+Client connected: /127.0.0.1:50364
+Client disconnected: /127.0.0.1:50292
+Client disconnected: /127.0.0.1:50322
+Client connected: /127.0.0.1:50366
+Client disconnected: /127.0.0.1:50310
+Client disconnected: /127.0.0.1:50306
+Client connected: /127.0.0.1:50376
+Client connected: /127.0.0.1:50382
+Client connected: /127.0.0.1:50388
 Received from client: LIST
-Client connected: /127.0.0.1:56144
+Client connected: /127.0.0.1:50400
 Received from client: LIST
-Client disconnected: /127.0.0.1:56104
+Client connected: /127.0.0.1:50402
 Received from client: LIST
-Client disconnected: /127.0.0.1:56094
 Received from client: LIST
-Client disconnected: /127.0.0.1:56112
+Client disconnected: /127.0.0.1:50354
 Received from client: LIST
-Client connected: /127.0.0.1:56158
-Client disconnected: /127.0.0.1:56116
-Client disconnected: /127.0.0.1:56128
-Client connected: /127.0.0.1:56168
+Client disconnected: /127.0.0.1:50388
+Client connected: /127.0.0.1:50404
 Received from client: LIST
 Received from client: LIST
 Received from client: LIST
-Client connected: /127.0.0.1:56170
-Client disconnected: /127.0.0.1:56144
+Client disconnected: /127.0.0.1:50364
+Client connected: /127.0.0.1:50414
 Received from client: LIST
-Client disconnected: /127.0.0.1:56142
-Client disconnected: /127.0.0.1:56168
-Client connected: /127.0.0.1:56184
+Client disconnected: /127.0.0.1:50402
+Client disconnected: /127.0.0.1:50400
+Client connected: /127.0.0.1:50426
 Received from client: LIST
+Client disconnected: /127.0.0.1:50366
 Received from client: LIST
-Client disconnected: /127.0.0.1:56184
-Client connected: /127.0.0.1:56186
-Client disconnected: /127.0.0.1:56170
-Client disconnected: /127.0.0.1:56158
+Client disconnected: /127.0.0.1:50338
+Client disconnected: /127.0.0.1:50348
 Received from client: LIST
-Client connected: /127.0.0.1:56190
-Client disconnected: /127.0.0.1:56186
-Client connected: /127.0.0.1:56200
+Client disconnected: /127.0.0.1:50404
+Client connected: /127.0.0.1:50440
 Received from client: LIST
-Client connected: /127.0.0.1:56208
+Client disconnected: /127.0.0.1:50382
+Client connected: /127.0.0.1:50442
 Received from client: LIST
-Client disconnected: /127.0.0.1:56190
-Client disconnected: /127.0.0.1:56200
-Client connected: /127.0.0.1:56222
+Client disconnected: /127.0.0.1:50376
+Client disconnected: /127.0.0.1:50426
 Received from client: LIST
-Client connected: /127.0.0.1:56220
+Client connected: /127.0.0.1:50444
+Client disconnected: /127.0.0.1:50414
+Client disconnected: /127.0.0.1:50442
 Received from client: LIST
-Client connected: /127.0.0.1:56238
+Client disconnected: /127.0.0.1:50440
+Client connected: /127.0.0.1:50448
+Client connected: /127.0.0.1:50450
 Received from client: LIST
-Client disconnected: /127.0.0.1:56220
-Client connected: /127.0.0.1:56246
+Client connected: /127.0.0.1:50452
 Received from client: LIST
-Client disconnected: /127.0.0.1:56222
-Client disconnected: /127.0.0.1:56208
-Client connected: /127.0.0.1:56260
+Client disconnected: /127.0.0.1:50448
+Client disconnected: /127.0.0.1:50444
+Client connected: /127.0.0.1:50464
 Received from client: LIST
-Client connected: /127.0.0.1:56262
-Client disconnected: /127.0.0.1:56238
+Client disconnected: /127.0.0.1:50450
+Client connected: /127.0.0.1:50470
+Client connected: /127.0.0.1:50484
 Received from client: LIST
-Client disconnected: /127.0.0.1:56246
-Client connected: /127.0.0.1:56266
 Received from client: LIST
-Client connected: /127.0.0.1:56278
+Client disconnected: /127.0.0.1:50452
 Received from client: LIST
+Client connected: /127.0.0.1:50490
+Client connected: /127.0.0.1:50506
+Client disconnected: /127.0.0.1:50464
 Received from client: LIST
-Client connected: /127.0.0.1:56280
-Client disconnected: /127.0.0.1:56260
+Client disconnected: /127.0.0.1:50470
+Client connected: /127.0.0.1:50522
+Client disconnected: /127.0.0.1:50484
+Client disconnected: /127.0.0.1:50490
 Received from client: LIST
-Client connected: /127.0.0.1:56290
-Client disconnected: /127.0.0.1:56266
-Client disconnected: /127.0.0.1:56262
-Client disconnected: /127.0.0.1:56278
-Client connected: /127.0.0.1:56300
+Client connected: /127.0.0.1:50524
+Client connected: /127.0.0.1:50526
 Received from client: LIST
-Client disconnected: /127.0.0.1:56280
-Client connected: /127.0.0.1:56304
 Received from client: LIST
-Client connected: /127.0.0.1:36644
+Client disconnected: /127.0.0.1:50524
+Client connected: /127.0.0.1:50534
+Client disconnected: /127.0.0.1:50522
 Received from client: LIST
-Client disconnected: /127.0.0.1:56290
-Client disconnected: /127.0.0.1:56300
+Client disconnected: /127.0.0.1:50506
 Received from client: LIST
-Client connected: /127.0.0.1:36654
-Client disconnected: /127.0.0.1:36644
-Client connected: /127.0.0.1:36656
+Client disconnected: /127.0.0.1:50534
+Client connected: /127.0.0.1:50544
+Client disconnected: /127.0.0.1:50526
+Client connected: /127.0.0.1:50554
 Received from client: LIST
+Client disconnected: /127.0.0.1:50544
 Received from client: LIST
-Client disconnected: /127.0.0.1:36656
-Client connected: /127.0.0.1:36660
-Client disconnected: /127.0.0.1:36654
-Client disconnected: /127.0.0.1:56304
+Client connected: /127.0.0.1:50568
+Client connected: /127.0.0.1:50584
+Client disconnected: /127.0.0.1:50554
 Received from client: LIST
-Client connected: /127.0.0.1:36664
-Client connected: /127.0.0.1:36672
-Client disconnected: /127.0.0.1:36660
 Received from client: LIST
-Client disconnected: /127.0.0.1:36664
-Client connected: /127.0.0.1:36686
+Client disconnected: /127.0.0.1:50584
+Client connected: /127.0.0.1:50600
 Received from client: LIST
-Client disconnected: /127.0.0.1:36672
-Client connected: /127.0.0.1:36688
+Client disconnected: /127.0.0.1:50568
+Client connected: /127.0.0.1:50604
 Received from client: LIST
-Client disconnected: /127.0.0.1:36686
-Client connected: /127.0.0.1:36692
+Client connected: /127.0.0.1:50602
+Client connected: /127.0.0.1:50614
 Received from client: LIST
-Client disconnected: /127.0.0.1:36688
-Client connected: /127.0.0.1:36704
+Client connected: /127.0.0.1:50626
 Received from client: LIST
-Client connected: /127.0.0.1:36706
 Received from client: LIST
-Client connected: /127.0.0.1:36708
+Client disconnected: /127.0.0.1:50602
+Client connected: /127.0.0.1:50632
+Client disconnected: /127.0.0.1:50604
 Received from client: LIST
-Client disconnected: /127.0.0.1:36692
+Client connected: /127.0.0.1:50644
+Client connected: /127.0.0.1:50656
 Received from client: LIST
-Client connected: /127.0.0.1:36724
-Client connected: /127.0.0.1:36738
+Client disconnected: /127.0.0.1:50626
+Client connected: /127.0.0.1:50666
+Client disconnected: /127.0.0.1:50600
 Received from client: LIST
-Client connected: /127.0.0.1:36748
+Client disconnected: /127.0.0.1:50632
+Client disconnected: /127.0.0.1:50614
+Client disconnected: /127.0.0.1:50644
+Client connected: /127.0.0.1:50670
 Received from client: LIST
-Client connected: /127.0.0.1:36760
+Client disconnected: /127.0.0.1:50656
 Received from client: LIST
-Client disconnected: /127.0.0.1:36704
-Client disconnected: /127.0.0.1:36708
-Client connected: /127.0.0.1:36764
+Client connected: /127.0.0.1:50672
 Received from client: LIST
-Client disconnected: /127.0.0.1:36706
-Client connected: /127.0.0.1:36774
-Client disconnected: /127.0.0.1:36738
-Client connected: /127.0.0.1:36778
-Client disconnected: /127.0.0.1:36748
+Client disconnected: /127.0.0.1:50672
+Client connected: /127.0.0.1:50690
+Client disconnected: /127.0.0.1:50666
 Received from client: LIST
+Client connected: /127.0.0.1:50692
+Client connected: /127.0.0.1:50696
 Received from client: LIST
+Client disconnected: /127.0.0.1:50690
 Received from client: LIST
-Client disconnected: /127.0.0.1:36724
-Client disconnected: /127.0.0.1:36760
-Client connected: /127.0.0.1:36782
-Client connected: /127.0.0.1:36794
+Client connected: /127.0.0.1:50704
+Client disconnected: /127.0.0.1:50670
+Client connected: /127.0.0.1:50718
 Received from client: LIST
+Client connected: /127.0.0.1:50726
 Received from client: LIST
-Client connected: /127.0.0.1:36802
-Client disconnected: /127.0.0.1:36794
-Client connected: /127.0.0.1:36816
+Client disconnected: /127.0.0.1:50692
+Client disconnected: /127.0.0.1:50718
+Client disconnected: /127.0.0.1:50704
 Received from client: LIST
+Client connected: /127.0.0.1:50742
+Client disconnected: /127.0.0.1:50696
+Client disconnected: /127.0.0.1:50726
+Client connected: /127.0.0.1:50754
+Client connected: /127.0.0.1:50760
 Received from client: LIST
-Client connected: /127.0.0.1:36830
-Client disconnected: /127.0.0.1:36816
+Client disconnected: /127.0.0.1:50742
 Received from client: LIST
-Client connected: /127.0.0.1:36832
-Client disconnected: /127.0.0.1:36830
-Client connected: /127.0.0.1:36840
 Received from client: LIST
+Client connected: /127.0.0.1:50766
+Client connected: /127.0.0.1:50774
 Received from client: LIST
-Client connected: /127.0.0.1:36854
+Client disconnected: /127.0.0.1:50754
+Client connected: /127.0.0.1:50786
 Received from client: LIST
-Client connected: /127.0.0.1:36868
+Client disconnected: /127.0.0.1:50760
+Client disconnected: /127.0.0.1:50766
+Client disconnected: /127.0.0.1:50774
+Client connected: /127.0.0.1:50802
 Received from client: LIST
-Client connected: /127.0.0.1:36874
+Client disconnected: /127.0.0.1:50786
+Client connected: /127.0.0.1:50810
 Received from client: LIST
-Client connected: /127.0.0.1:36882
-Client connected: /127.0.0.1:36892
+Client disconnected: /127.0.0.1:50802
+Client connected: /127.0.0.1:50816
 Received from client: LIST
-Client connected: /127.0.0.1:36904
+Client disconnected: /127.0.0.1:50810
+Client connected: /127.0.0.1:50826
 Received from client: LIST
-Client disconnected: /127.0.0.1:36874
 Received from client: LIST
-Client connected: /127.0.0.1:36914
+Client connected: /127.0.0.1:50836
+Client disconnected: /127.0.0.1:50816
+Client connected: /127.0.0.1:50848
+Client disconnected: /127.0.0.1:50826
 Received from client: LIST
-Client connected: /127.0.0.1:36926
-Client disconnected: /127.0.0.1:36882
-Client connected: /127.0.0.1:36940
-Client disconnected: /127.0.0.1:36892
-Client connected: /127.0.0.1:36950
-Client disconnected: /127.0.0.1:36840
-Client disconnected: /127.0.0.1:36914
-Client disconnected: /127.0.0.1:36774
-Client disconnected: /127.0.0.1:36802
-Client disconnected: /127.0.0.1:36832
-Client disconnected: /127.0.0.1:36778
-Client connected: /127.0.0.1:36964
-Client connected: /127.0.0.1:36972
-Client connected: /127.0.0.1:36980
-Client connected: /127.0.0.1:36996
-Client disconnected: /127.0.0.1:36904
-Client disconnected: /127.0.0.1:36764
-Client disconnected: /127.0.0.1:36868
-Client disconnected: /127.0.0.1:36854
-Client connected: /127.0.0.1:37004
-Client connected: /127.0.0.1:37020
 Received from client: LIST
+Client disconnected: /127.0.0.1:50836
+Client connected: /127.0.0.1:50860
+Client disconnected: /127.0.0.1:50848
+Client connected: /127.0.0.1:50874
 Received from client: LIST
+Client disconnected: /127.0.0.1:50860
+Client connected: /127.0.0.1:50880
 Received from client: LIST
 Received from client: LIST
-Client disconnected: /127.0.0.1:36782
-Client disconnected: /127.0.0.1:36950
+Client disconnected: /127.0.0.1:50874
+Client connected: /127.0.0.1:50896
+Client disconnected: /127.0.0.1:50880
+Client connected: /127.0.0.1:50910
 Received from client: LIST
+Client connected: /127.0.0.1:50922
+Client connected: /127.0.0.1:50934
 Received from client: LIST
+Client disconnected: /127.0.0.1:50922
 Received from client: LIST
-Client connected: /127.0.0.1:37022
-Client disconnected: /127.0.0.1:37004
-Client disconnected: /127.0.0.1:37020
-Client disconnected: /127.0.0.1:36964
+Client connected: /127.0.0.1:50944
+Client disconnected: /127.0.0.1:50934
+Client disconnected: /127.0.0.1:50910
 Received from client: LIST
-Client disconnected: /127.0.0.1:36940
-Client disconnected: /127.0.0.1:36980
-Client disconnected: /127.0.0.1:36996
-Client disconnected: /127.0.0.1:36972
-Client connected: /127.0.0.1:37028
-Client connected: /127.0.0.1:37026
+Client connected: /127.0.0.1:50956
+Client disconnected: /127.0.0.1:50896
+Client connected: /127.0.0.1:50972
 Received from client: LIST
-Client connected: /127.0.0.1:37032
-Client connected: /127.0.0.1:37044
 Received from client: LIST
-Client disconnected: /127.0.0.1:37032
-Client connected: /127.0.0.1:37058
+Client connected: /127.0.0.1:50980
 Received from client: LIST
-Client disconnected: /127.0.0.1:37028
-Client disconnected: /127.0.0.1:37044
+Client disconnected: /127.0.0.1:50944
+Client connected: /127.0.0.1:50996
 Received from client: LIST
-Client disconnected: /127.0.0.1:37026
+Client connected: /127.0.0.1:50998
 Received from client: LIST
-Client disconnected: /127.0.0.1:37022
+Client disconnected: /127.0.0.1:50996
 Received from client: LIST
+Client disconnected: /127.0.0.1:50998
+Client disconnected: /127.0.0.1:50956
+Client disconnected: /127.0.0.1:50972
+Client disconnected: /127.0.0.1:50980
+Client connected: /127.0.0.1:51008
 Received from client: LIST
-Client disconnected: /127.0.0.1:37058
-Client connected: /127.0.0.1:37060
-Client connected: /127.0.0.1:37072
+Client connected: /127.0.0.1:51020
+Client disconnected: /127.0.0.1:51008
 Received from client: LIST
-Client disconnected: /127.0.0.1:37060
-Client disconnected: /127.0.0.1:36926
+Client connected: /127.0.0.1:51030
+Client disconnected: /127.0.0.1:51020
+Client connected: /127.0.0.1:51046
 Received from client: LIST
-Client disconnected: /127.0.0.1:37072
-Client connected: /127.0.0.1:37078
-Client connected: /127.0.0.1:37086
 Received from client: LIST
-Client connected: /127.0.0.1:37090
-Client disconnected: /127.0.0.1:37078
+Client connected: /127.0.0.1:51054
+Client connected: /127.0.0.1:51068
 Received from client: LIST
-Client disconnected: /127.0.0.1:37086
+Client disconnected: /127.0.0.1:51046
 Received from client: LIST
-Client disconnected: /127.0.0.1:37090
+Client disconnected: /127.0.0.1:51054
+Client disconnected: /127.0.0.1:51068
+Client disconnected: /127.0.0.1:51030
 ]]></system-out>
+    <system-err><![CDATA[Client handler error: Connection reset
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:186)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:140)
+	at java.base/sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:284)
+	at java.base/sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:326)
+	at java.base/sun.nio.cs.StreamDecoder.read(StreamDecoder.java:178)
+	at java.base/java.io.InputStreamReader.read(InputStreamReader.java:181)
+	at java.base/java.io.BufferedReader.fill(BufferedReader.java:161)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:326)
+	at java.base/java.io.BufferedReader.readLine(BufferedReader.java:392)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:31)
+]]></system-err>
   </testcase>
 </testsuite>

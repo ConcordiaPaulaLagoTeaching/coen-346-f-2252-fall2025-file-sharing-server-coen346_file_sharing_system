@@ -381,6 +381,11 @@ public class FileSystemManager {
             
             return content;
             
+        } catch (IOException e) {
+        if (e.getMessage().contains("Stream Closed")) {
+            throw new Exception("ERROR: File system unavailable (disk deleted or inaccessible)");
+        }
+        throw e;
         } finally {
             rwLock.readLock().unlock();
         }
