@@ -1,96 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="ThreadManagementTests" time="0.912" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="ThreadManagementTests" time="1.157" tests="3" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="17"/>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value=""/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/test-classes:/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/classes:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.3/junit-jupiter-5.9.3.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.3/junit-jupiter-api-5.9.3.jar:/home/user/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/user/.m2/repository/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar:/home/user/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.3/junit-jupiter-params-5.9.3.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.3/junit-jupiter-engine-5.9.3.jar:/home/user/.m2/repository/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar:"/>
-    <property name="java.vm.vendor" value="Ubuntu"/>
+    <property name="java.class.path" value="/workspaces/file-sharing-server-mint/FileServer/target/test-classes:/workspaces/file-sharing-server-mint/FileServer/target/classes:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.3/junit-jupiter-5.9.3.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.3/junit-jupiter-api-5.9.3.jar:/home/codespace/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar:/home/codespace/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.3/junit-jupiter-params-5.9.3.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.3/junit-jupiter-engine-5.9.3.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar:"/>
+    <property name="java.vm.vendor" value="Microsoft"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.vendor.url" value="https://ubuntu.com/"/>
+    <property name="java.vendor.url" value="https://www.microsoft.com"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.vm.specification.version" value="11"/>
     <property name="os.name" value="Linux"/>
-    <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="US"/>
-    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-17-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/surefire/surefirebooter-20251113133820851_3.jar /home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/surefire 2025-11-13T13-38-20_790-jvmRun1 surefire-20251113133820851_1tmp surefire_0-20251113133820851_2tmp"/>
+    <property name="sun.boot.library.path" value="/opt/java/11.0.14/lib"/>
+    <property name="sun.java.command" value="/workspaces/file-sharing-server-mint/FileServer/target/surefire/surefirebooter-20251113184904996_3.jar /workspaces/file-sharing-server-mint/FileServer/target/surefire 2025-11-13T18-49-04_121-jvmRun1 surefire-20251113184904996_1tmp surefire_0-20251113184904996_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/test-classes:/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/classes:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.3/junit-jupiter-5.9.3.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.3/junit-jupiter-api-5.9.3.jar:/home/user/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/user/.m2/repository/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar:/home/user/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.3/junit-jupiter-params-5.9.3.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.3/junit-jupiter-engine-5.9.3.jar:/home/user/.m2/repository/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar:"/>
+    <property name="surefire.test.class.path" value="/workspaces/file-sharing-server-mint/FileServer/target/test-classes:/workspaces/file-sharing-server-mint/FileServer/target/classes:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.3/junit-jupiter-5.9.3.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.3/junit-jupiter-api-5.9.3.jar:/home/codespace/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar:/home/codespace/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.3/junit-jupiter-params-5.9.3.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.3/junit-jupiter-engine-5.9.3.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="/home/user"/>
+    <property name="user.home" value="/home/codespace"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2025-07-15"/>
-    <property name="java.home" value="/usr/lib/jvm/java-17-openjdk-amd64"/>
+    <property name="java.version.date" value="2022-02-08"/>
+    <property name="java.home" value="/opt/java/11.0.14"/>
     <property name="file.separator" value="/"/>
-    <property name="basedir" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer"/>
-    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="basedir" value="/workspaces/file-sharing-server-mint/FileServer"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/surefire/surefirebooter-20251113133820851_3.jar"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/workspaces/file-sharing-server-mint/FileServer/target/surefire/surefirebooter-20251113184904996_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="17.0.16+8-Ubuntu-0ubuntu122.04.1"/>
-    <property name="user.name" value="user"/>
+    <property name="java.runtime.version" value="11.0.14.1+1-LTS"/>
+    <property name="user.name" value="codespace"/>
     <property name="path.separator" value=":"/>
-    <property name="os.version" value="6.8.0-87-generic"/>
+    <property name="os.version" value="6.8.0-1030-azure"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="localRepository" value="/home/user/.m2/repository"/>
-    <property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-17"/>
+    <property name="java.vendor.version" value="Microsoft-31205"/>
+    <property name="localRepository" value="/home/codespace/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/microsoft/openjdk/issues"/>
     <property name="java.io.tmpdir" value="/tmp"/>
-    <property name="java.version" value="17.0.16"/>
-    <property name="user.dir" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer"/>
+    <property name="java.version" value="11.0.14.1"/>
+    <property name="user.dir" value="/workspaces/file-sharing-server-mint/FileServer"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="native.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
-    <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.vendor" value="Ubuntu"/>
-    <property name="java.vm.version" value="17.0.16+8-Ubuntu-0ubuntu122.04.1"/>
-    <property name="java.specification.maintenance.version" value="1"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Microsoft"/>
+    <property name="java.vm.version" value="11.0.14.1+1-LTS"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="61.0"/>
+    <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="testReadersAndWritersSynchronization" classname="ThreadManagementTests" time="0.118">
+  <testcase name="testReadersAndWritersSynchronization" classname="ThreadManagementTests" time="0.125">
     <system-out><![CDATA[Server started. Listening on port 12345...
+Client connected: /127.0.0.1:34088
 Test server is ready on port 12345
-Client connected: /127.0.0.1:55352
-Client disconnected: /127.0.0.1:55352
-Client connected: /127.0.0.1:55360
+Client disconnected: /127.0.0.1:34088
+Client connected: /127.0.0.1:34102
 Received from client: CREATE shared
-Client disconnected: /127.0.0.1:55360
-Client connected: /127.0.0.1:55364
+Client connected: /127.0.0.1:34116
+Client disconnected: /127.0.0.1:34102
 Received from client: WRITE shared hello
-Client disconnected: /127.0.0.1:55364
-Client connected: /127.0.0.1:55378
-Client connected: /127.0.0.1:55394
-Received from client: READ shared
-Client connected: /127.0.0.1:55396
-Received from client: READ shared
-Client connected: /127.0.0.1:55404
-Client disconnected: /127.0.0.1:55394
-Client disconnected: /127.0.0.1:55378
-Reader got: SUCCESS: 
-Reader got: SUCCESS: 
-Received from client: READ shared
-Client connected: /127.0.0.1:55418
+Client disconnected: /127.0.0.1:34116
+Client connected: /127.0.0.1:34132
+Client connected: /127.0.0.1:34148
 Received from client: READ shared
 Reader got: SUCCESS: 
+Client connected: /127.0.0.1:34164
+Client disconnected: /127.0.0.1:34132
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55396
+Client connected: /127.0.0.1:34168
 Reader got: SUCCESS: 
-Client disconnected: /127.0.0.1:55418
+Client disconnected: /127.0.0.1:34164
+Client connected: /127.0.0.1:34178
+Received from client: READ shared
+Received from client: READ shared
 Reader got: SUCCESS: 
-Client disconnected: /127.0.0.1:55404
-Client connected: /127.0.0.1:55434
+Received from client: READ shared
+Reader got: SUCCESS: 
+Client disconnected: /127.0.0.1:34148
+Client disconnected: /127.0.0.1:34168
+Reader got: SUCCESS: 
+Client disconnected: /127.0.0.1:34178
+Client connected: /127.0.0.1:34192
 Received from client: WRITE shared world
-Client disconnected: /127.0.0.1:55434
 Writer got: ERROR: ERROR: file too large
+Client disconnected: /127.0.0.1:34192
 ]]></system-out>
     <system-err><![CDATA[java.io.IOException: Stream Closed
 	at java.base/java.io.RandomAccessFile.seek0(Native Method)
-	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:591)
 	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
 	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
 	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
@@ -102,157 +106,157 @@ java.lang.Exception: ERROR: file too large
 	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
 ]]></system-err>
   </testcase>
-  <testcase name="testDeadlockPreventionUnderStress" classname="ThreadManagementTests" time="0.064">
-    <system-out><![CDATA[Client connected: /127.0.0.1:55440
-Client connected: /127.0.0.1:55452
+  <testcase name="testDeadlockPreventionUnderStress" classname="ThreadManagementTests" time="0.147">
+    <system-out><![CDATA[Client connected: /127.0.0.1:34204
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55440
-Client connected: /127.0.0.1:55468
-Received from client: READ shared
-Client connected: /127.0.0.1:55484
+Client connected: /127.0.0.1:34214
+Client connected: /127.0.0.1:34224
 Received from client: WRITE shared data0
-Client disconnected: /127.0.0.1:55452
-Client connected: /127.0.0.1:55486
+Client disconnected: /127.0.0.1:34204
+Client connected: /127.0.0.1:34238
+Received from client: READ shared
+Client disconnected: /127.0.0.1:34224
+Client disconnected: /127.0.0.1:34214
+Client connected: /127.0.0.1:34254
 Received from client: WRITE shared data3
-Client connected: /127.0.0.1:55504
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55484
-Client disconnected: /127.0.0.1:55468
-Client connected: /127.0.0.1:55502
+Client disconnected: /127.0.0.1:34238
+Client disconnected: /127.0.0.1:34254
+Client connected: /127.0.0.1:34270
+Client connected: /127.0.0.1:34278
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55486
-Client connected: /127.0.0.1:55512
-Client disconnected: /127.0.0.1:55504
+Client connected: /127.0.0.1:34286
 Received from client: WRITE shared data6
-Client connected: /127.0.0.1:55528
+Client connected: /127.0.0.1:34290
 Received from client: READ shared
-Client connected: /127.0.0.1:55536
+Client disconnected: /127.0.0.1:34270
+Client disconnected: /127.0.0.1:34278
+Client connected: /127.0.0.1:34300
 Received from client: READ shared
-Client connected: /127.0.0.1:55534
-Client disconnected: /127.0.0.1:55502
-Client disconnected: /127.0.0.1:55528
-Client disconnected: /127.0.0.1:55512
-Received from client: READ shared
-Client connected: /127.0.0.1:55544
+Client disconnected: /127.0.0.1:34286
 Received from client: WRITE shared data9
-Client connected: /127.0.0.1:55558
-Client disconnected: /127.0.0.1:55536
+Client connected: /127.0.0.1:34302
+Client disconnected: /127.0.0.1:34290
+Client disconnected: /127.0.0.1:34300
+Client connected: /127.0.0.1:34304
 Received from client: READ shared
-Client connected: /127.0.0.1:55560
+Client disconnected: /127.0.0.1:34302
+Client connected: /127.0.0.1:34314
+Received from client: READ shared
+Client connected: /127.0.0.1:34324
+Client disconnected: /127.0.0.1:34304
 Received from client: WRITE shared data12
-Client disconnected: /127.0.0.1:55534
-Client connected: /127.0.0.1:55568
+Client connected: /127.0.0.1:34338
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55544
-Client connected: /127.0.0.1:55572
-Client disconnected: /127.0.0.1:55560
+Client connected: /127.0.0.1:34346
 Received from client: READ shared
-Client connected: /127.0.0.1:55588
-Client disconnected: /127.0.0.1:55568
-Client disconnected: /127.0.0.1:55558
-Client connected: /127.0.0.1:55592
+Client disconnected: /127.0.0.1:34324
+Client connected: /127.0.0.1:34350
+Client disconnected: /127.0.0.1:34314
+Client disconnected: /127.0.0.1:34338
 Received from client: WRITE shared data15
-Client connected: /127.0.0.1:55608
+Client connected: /127.0.0.1:34364
 Received from client: READ shared
+Client connected: /127.0.0.1:34370
 Received from client: READ shared
-Client connected: /127.0.0.1:55620
+Client connected: /127.0.0.1:34376
+Client disconnected: /127.0.0.1:34350
 Received from client: WRITE shared data18
-Client disconnected: /127.0.0.1:55572
-Client disconnected: /127.0.0.1:55588
-Client connected: /127.0.0.1:55630
+Client disconnected: /127.0.0.1:34346
+Client disconnected: /127.0.0.1:34370
+Client connected: /127.0.0.1:34382
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55608
-Client connected: /127.0.0.1:55634
-Client disconnected: /127.0.0.1:55592
+Client disconnected: /127.0.0.1:34364
+Client disconnected: /127.0.0.1:34376
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55620
-Client connected: /127.0.0.1:55648
-Client disconnected: /127.0.0.1:55630
+Client connected: /127.0.0.1:34390
+Client disconnected: /127.0.0.1:34382
 Received from client: WRITE shared data21
-Client connected: /127.0.0.1:55652
+Client connected: /127.0.0.1:34406
+Client disconnected: /127.0.0.1:34390
+Client connected: /127.0.0.1:34412
 Received from client: READ shared
-Client connected: /127.0.0.1:55662
-Client disconnected: /127.0.0.1:55634
+Client disconnected: /127.0.0.1:34406
+Client connected: /127.0.0.1:34426
 Received from client: READ shared
-Client connected: /127.0.0.1:55670
-Client disconnected: /127.0.0.1:55648
+Client connected: /127.0.0.1:34428
 Received from client: WRITE shared data24
-Client connected: /127.0.0.1:55684
-Client disconnected: /127.0.0.1:55662
+Client connected: /127.0.0.1:34436
 Received from client: READ shared
-Client connected: /127.0.0.1:55686
-Client disconnected: /127.0.0.1:55652
+Client connected: /127.0.0.1:34442
 Received from client: READ shared
-Client connected: /127.0.0.1:55688
-Client disconnected: /127.0.0.1:55670
-Client disconnected: /127.0.0.1:55684
-Received from client: READ shared
-Client connected: /127.0.0.1:55704
-Client connected: /127.0.0.1:55720
+Client disconnected: /127.0.0.1:34426
+Client connected: /127.0.0.1:34458
 Received from client: WRITE shared data27
-Client disconnected: /127.0.0.1:55686
+Client connected: /127.0.0.1:34460
+Client disconnected: /127.0.0.1:34428
+Client disconnected: /127.0.0.1:34412
 Received from client: READ shared
-Client connected: /127.0.0.1:55730
+Client disconnected: /127.0.0.1:34436
+Client disconnected: /127.0.0.1:34442
+Client disconnected: /127.0.0.1:34458
+Client connected: /127.0.0.1:34464
 Received from client: WRITE shared data30
-Client disconnected: /127.0.0.1:55704
-Client connected: /127.0.0.1:55734
-Client disconnected: /127.0.0.1:55688
+Client connected: /127.0.0.1:34466
+Client connected: /127.0.0.1:34478
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55720
-Client connected: /127.0.0.1:55740
-Client connected: /127.0.0.1:55744
 Received from client: READ shared
+Client connected: /127.0.0.1:34492
+Received from client: READ shared
+Client connected: /127.0.0.1:34506
+Client disconnected: /127.0.0.1:34460
 Received from client: WRITE shared data33
-Client connected: /127.0.0.1:55746
-Client disconnected: /127.0.0.1:55730
-Client connected: /127.0.0.1:55756
+Client disconnected: /127.0.0.1:34492
+Client disconnected: /127.0.0.1:34464
+Client connected: /127.0.0.1:34522
+Client disconnected: /127.0.0.1:34466
 Received from client: READ shared
+Client disconnected: /127.0.0.1:34506
+Client disconnected: /127.0.0.1:34478
+Client connected: /127.0.0.1:34536
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55734
-Client disconnected: /127.0.0.1:55740
-Client connected: /127.0.0.1:55764
-Client disconnected: /127.0.0.1:55744
-Client disconnected: /127.0.0.1:55746
-Client connected: /127.0.0.1:55770
+Client disconnected: /127.0.0.1:34522
+Client connected: /127.0.0.1:34544
 Received from client: WRITE shared data36
+Client connected: /127.0.0.1:34548
+Client disconnected: /127.0.0.1:34536
 Received from client: READ shared
-Client connected: /127.0.0.1:55774
-Received from client: READ shared
-Client connected: /127.0.0.1:55776
-Client disconnected: /127.0.0.1:55756
+Client connected: /127.0.0.1:34560
 Received from client: WRITE shared data39
-Client connected: /127.0.0.1:55778
+Client connected: /127.0.0.1:34564
+Client disconnected: /127.0.0.1:34560
+Client connected: /127.0.0.1:34572
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55770
-Client disconnected: /127.0.0.1:55764
-Client connected: /127.0.0.1:55780
-Client disconnected: /127.0.0.1:55774
-Client connected: /127.0.0.1:55794
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55776
-Client connected: /127.0.0.1:55802
+Client disconnected: /127.0.0.1:34544
+Client connected: /127.0.0.1:34588
+Received from client: READ shared
+Client disconnected: /127.0.0.1:34548
+Client connected: /127.0.0.1:34602
 Received from client: WRITE shared data42
+Client disconnected: /127.0.0.1:34572
+Client disconnected: /127.0.0.1:34564
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55778
-Client connected: /127.0.0.1:55808
-Client disconnected: /127.0.0.1:55794
-Received from client: READ shared
-Client connected: /127.0.0.1:55818
-Client disconnected: /127.0.0.1:55780
-Client connected: /127.0.0.1:55828
+Client connected: /127.0.0.1:34612
+Client disconnected: /127.0.0.1:34602
+Client disconnected: /127.0.0.1:34588
+Client connected: /127.0.0.1:34614
+Client connected: /127.0.0.1:34624
 Received from client: WRITE shared data45
 Received from client: READ shared
+Client connected: /127.0.0.1:34632
 Received from client: READ shared
-Client connected: /127.0.0.1:55832
-Client disconnected: /127.0.0.1:55802
-Client connected: /127.0.0.1:55840
-Client disconnected: /127.0.0.1:55828
-Client disconnected: /127.0.0.1:55818
-Client disconnected: /127.0.0.1:55808
+Client connected: /127.0.0.1:34648
+Received from client: READ shared
+Client disconnected: /127.0.0.1:34612
+Client disconnected: /127.0.0.1:34614
+Client disconnected: /127.0.0.1:34624
+Client disconnected: /127.0.0.1:34632
+Client connected: /127.0.0.1:34650
 Received from client: WRITE shared data48
 Received from client: READ shared
-Client disconnected: /127.0.0.1:55840
-Client disconnected: /127.0.0.1:55832
+Client disconnected: /127.0.0.1:34648
+Client disconnected: /127.0.0.1:34650
 ]]></system-out>
     <system-err><![CDATA[java.lang.Exception: ERROR: file too large
 	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
@@ -307,89 +311,89 @@ java.lang.Exception: ERROR: file too large
 	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
 ]]></system-err>
   </testcase>
-  <testcase name="testMultipleClientsConcurrentAccess" classname="ThreadManagementTests" time="0.015">
-    <system-out><![CDATA[Client connected: /127.0.0.1:55842
-Client connected: /127.0.0.1:55852
-Client connected: /127.0.0.1:55868
-Client connected: /127.0.0.1:55884
+  <testcase name="testMultipleClientsConcurrentAccess" classname="ThreadManagementTests" time="0.127">
+    <system-out><![CDATA[Client connected: /127.0.0.1:34666
+Client connected: /127.0.0.1:34670
+Client connected: /127.0.0.1:34684
 Received from client: CREATE file1
-Received from client: CREATE file2
-Client connected: /127.0.0.1:55878
-Client connected: /127.0.0.1:55892
-Received from client: CREATE file4
 Received from client: CREATE file0
-Client connected: /127.0.0.1:55904
+Client connected: /127.0.0.1:34688
+Received from client: CREATE file2
+Client disconnected: /127.0.0.1:34666
+Client disconnected: /127.0.0.1:34684
+Client disconnected: /127.0.0.1:34670
+Client connected: /127.0.0.1:34692
 Received from client: CREATE file3
+Client disconnected: /127.0.0.1:34688
+Received from client: CREATE file4
+Client disconnected: /127.0.0.1:34692
+Client connected: /127.0.0.1:34698
+Client connected: /127.0.0.1:34702
 Received from client: CREATE file5
-Client connected: /127.0.0.1:55920
+Client connected: /127.0.0.1:34718
+Client disconnected: /127.0.0.1:34698
 Received from client: CREATE file6
-Client connected: /127.0.0.1:55934
-Client disconnected: /127.0.0.1:55884
-Client disconnected: /127.0.0.1:55842
+Client disconnected: /127.0.0.1:34702
+Client connected: /127.0.0.1:34716
 Received from client: CREATE file7
-Client connected: /127.0.0.1:55942
-Client disconnected: /127.0.0.1:55878
-Client disconnected: /127.0.0.1:55852
-Client disconnected: /127.0.0.1:55904
+Client connected: /127.0.0.1:34722
 Received from client: CREATE file8
-Client disconnected: /127.0.0.1:55920
-Client connected: /127.0.0.1:55948
-Client disconnected: /127.0.0.1:55892
-Client disconnected: /127.0.0.1:55934
+Client disconnected: /127.0.0.1:34718
+Client disconnected: /127.0.0.1:34716
+Client connected: /127.0.0.1:34738
+Client connected: /127.0.0.1:34752
 Received from client: CREATE file9
-Client disconnected: /127.0.0.1:55868
-Client disconnected: /127.0.0.1:55942
-Client connected: /127.0.0.1:55962
 Received from client: CREATE file10
-Client connected: /127.0.0.1:55978
+Client connected: /127.0.0.1:34758
 Received from client: CREATE file11
-Client connected: /127.0.0.1:55990
+Client disconnected: /127.0.0.1:34752
+Client disconnected: /127.0.0.1:34722
+Client disconnected: /127.0.0.1:34738
+Client connected: /127.0.0.1:34760
 Received from client: CREATE file12
-Client disconnected: /127.0.0.1:55948
-Client disconnected: /127.0.0.1:55962
+Client connected: /127.0.0.1:34766
+Client connected: /127.0.0.1:34778
 Received from client: CREATE file13
-Client connected: /127.0.0.1:56002
-Client disconnected: /127.0.0.1:55990
-Client disconnected: /127.0.0.1:55978
-Client connected: /127.0.0.1:56006
-Client connected: /127.0.0.1:56018
-Received from client: CREATE file14
-Received from client: CREATE file15
-Client connected: /127.0.0.1:56020
-Received from client: CREATE file16
-Client disconnected: /127.0.0.1:56002
-Client disconnected: /127.0.0.1:56006
-Client connected: /127.0.0.1:56024
-Received from client: CREATE file17
-Client disconnected: /127.0.0.1:56018
-Client connected: /127.0.0.1:56032
-Client disconnected: /127.0.0.1:56020
+Client disconnected: /127.0.0.1:34760
 Received from client: CREATE file18
+Client disconnected: /127.0.0.1:34758
+Client disconnected: /127.0.0.1:34778
+Client connected: /127.0.0.1:34780
+Received from client: CREATE file17
+Client disconnected: /127.0.0.1:34766
+Client connected: /127.0.0.1:34796
 Received from client: CREATE file19
-Client disconnected: /127.0.0.1:56024
-Client disconnected: /127.0.0.1:56032
+Client connected: /127.0.0.1:34800
+Client disconnected: /127.0.0.1:34780
+Client connected: /127.0.0.1:34798
+Received from client: CREATE file14
+Received from client: CREATE file16
+Client disconnected: /127.0.0.1:34796
+Received from client: CREATE file15
+Client disconnected: /127.0.0.1:34798
+Client disconnected: /127.0.0.1:34800
 ]]></system-out>
     <system-err><![CDATA[java.io.IOException: Stream Closed
 	at java.base/java.io.RandomAccessFile.seek0(Native Method)
-	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:591)
 	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
 	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
 	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
 java.io.IOException: Stream Closed
 	at java.base/java.io.RandomAccessFile.seek0(Native Method)
-	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:591)
 	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
 	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
 	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
 java.io.IOException: Stream Closed
 	at java.base/java.io.RandomAccessFile.seek0(Native Method)
-	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:591)
 	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
 	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
 	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
 java.io.IOException: Stream Closed
 	at java.base/java.io.RandomAccessFile.seek0(Native Method)
-	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:591)
 	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
 	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
 	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
@@ -399,20 +403,14 @@ java.lang.Exception: ERROR: maximum number of files reached
 java.lang.Exception: ERROR: maximum number of files reached
 	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
 	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
-java.io.IOException: Stream Closed
-	at java.base/java.io.RandomAccessFile.seek0(Native Method)
-	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
-	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
-	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
 	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
 java.lang.Exception: ERROR: maximum number of files reached
 	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
 	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
-java.io.IOException: Stream Closed
-	at java.base/java.io.RandomAccessFile.seek0(Native Method)
-	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
-	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
-	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
 	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
 java.lang.Exception: ERROR: maximum number of files reached
 	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)

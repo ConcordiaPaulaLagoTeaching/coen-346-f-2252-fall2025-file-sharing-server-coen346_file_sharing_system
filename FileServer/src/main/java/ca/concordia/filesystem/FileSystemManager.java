@@ -57,6 +57,7 @@ public class FileSystemManager {
         
         // Open or create the disk file
         this.disk = new RandomAccessFile(filename, "rws");
+        boolean isNewFile = disk.length() == 0;
         disk.setLength(totalSize);
         
         // Initialize data structures
@@ -71,7 +72,7 @@ public class FileSystemManager {
         this.dataBlockStart = metadataBlocks;
         
         // Initialize or load file system
-        if (disk.length() == totalSize && totalSize > 0) {
+        if (!isNewFile && totalSize > 0) {
             // Try to load existing file system
             try {
                 loadMetadata();
@@ -99,9 +100,14 @@ public class FileSystemManager {
             fentryTable[i] = new FEntry("", (short) 0, (short) -1);
         }
         
-        // Initialize FNode table (all free)
+        // Initialize FNode table
         for (int i = 0; i < MAXBLOCKS; i++) {
             fnodeTable[i] = new FNode(-(i + 1));  // -(i+1) indicates free block i
+        }
+        
+        // Mark metadata blocks as in-use
+        for (int i = 0; i < metadataBlocks; i++) {
+            fnodeTable[i].markInUse();
         }
         
         // Write metadata to disk
@@ -150,6 +156,13 @@ public class FileSystemManager {
             int nextBlock = disk.readInt();
             fnodeTable[i] = new FNode(blockIndex);
             fnodeTable[i].setNextBlock(nextBlock);
+        }
+        
+        // Mark metadata blocks as in-use
+        for (int i = 0; i < metadataBlocks; i++) {
+            if (fnodeTable[i].isFree()) {
+                fnodeTable[i].markInUse();
+            }
         }
     }
 
