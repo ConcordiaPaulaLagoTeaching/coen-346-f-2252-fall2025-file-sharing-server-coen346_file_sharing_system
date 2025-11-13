@@ -13,11 +13,17 @@ public class FileServer {
     private int port;
     public FileServer(int port, String fileSystemName, int totalSize){
         // Initialize the FileSystemManager
-        FileSystemManager fsManager = new FileSystemManager(fileSystemName,
-                10*128 );
-        this.fsManager = fsManager;
-        this.port = port;
-    }
+        try {
+        	this.fsManager = FileSystemManager.getInstance(fileSystemName, totalSize);
+        	this.port = port;
+        }
+        catch (Exception e) {
+        	e.printStackTrace();
+        	throw new RuntimeException("Failed to initialize FileSystemManager");
+        }
+        }
+
+   
 
     public void start(){
         try (ServerSocket serverSocket = new ServerSocket(12345)) {
@@ -46,6 +52,9 @@ public class FileServer {
                             case "QUIT":
                                 writer.println("SUCCESS: Disconnecting.");
                                 return;
+                            case "LIST":
+                            	ListCommandHandler.handle(writer);
+                            	break;
                             default:
                                 writer.println("ERROR: Unknown command.");
                                 break;
