@@ -1,12 +1,12 @@
 package helpers;
 
-import ca.concordia.server.FileServer;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.time.Duration;
 import java.time.Instant;
+
+import ca.concordia.server.FileServer;
 
 public class ServerRunner {
     
@@ -40,7 +40,6 @@ public class ServerRunner {
             return false;
         }
     }
-
 
     public void stop() {
         if (server != null) {
