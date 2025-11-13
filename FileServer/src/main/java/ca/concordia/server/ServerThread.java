@@ -7,10 +7,12 @@ import java.net.Socket;
 
 import ca.concordia.filesystem.FileSystemManager;
 
+
 public class ServerThread extends Thread {
     
     protected Socket clientSocket;
     private FileSystemManager fsManager;
+
 
     public ServerThread(Socket clientSocket, FileSystemManager fsManager) {
         this.clientSocket = clientSocket;
