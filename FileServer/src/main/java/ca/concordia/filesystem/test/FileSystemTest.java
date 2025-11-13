@@ -68,7 +68,7 @@ public class FileSystemTest {
     private static void testCreateFile() {
         System.out.println("Test 1: Create File");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             fsm.createFile("test.txt");
             
             String[] files = fsm.listFiles();
@@ -88,7 +88,7 @@ public class FileSystemTest {
     private static void testCreateDuplicateFile() {
         System.out.println("\nTest 2: Create Duplicate File");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             fsm.createFile("test.txt");
             
             try {
@@ -112,7 +112,7 @@ public class FileSystemTest {
     private static void testCreateTooManyFiles() {
         System.out.println("\nTest 3: Create Too Many Files");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             
             // Create MAX_FILES files
             for (int i = 0; i < MAX_FILES; i++) {
@@ -141,7 +141,7 @@ public class FileSystemTest {
     private static void testFilenameTooLong() {
         System.out.println("\nTest 4: Filename Too Long");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             
             try {
                 fsm.createFile("verylongfilename.txt"); // 22 characters
@@ -164,7 +164,7 @@ public class FileSystemTest {
     private static void testWriteAndReadSmallFile() {
         System.out.println("\nTest 5: Write and Read Small File");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             fsm.createFile("small.txt");
             
             byte[] content = "Hello World!".getBytes();
@@ -188,7 +188,7 @@ public class FileSystemTest {
     private static void testWriteAndReadLargeFile() {
         System.out.println("\nTest 6: Write and Read Large File (Multiple Blocks)");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             fsm.createFile("large.txt");
             
             // Create content larger than one block
@@ -216,7 +216,7 @@ public class FileSystemTest {
     private static void testWriteEmptyFile() {
         System.out.println("\nTest 7: Write Empty File");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             fsm.createFile("empty.txt");
             
             byte[] content = new byte[0];
@@ -240,7 +240,7 @@ public class FileSystemTest {
     private static void testWriteToNonexistentFile() {
         System.out.println("\nTest 8: Write to Nonexistent File");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             
             try {
                 fsm.writeFile("nonexistent.txt", "test".getBytes());
@@ -263,7 +263,7 @@ public class FileSystemTest {
     private static void testDeleteFile() {
         System.out.println("\nTest 9: Delete File");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             fsm.createFile("delete.txt");
             fsm.writeFile("delete.txt", "content".getBytes());
             fsm.deleteFile("delete.txt");
@@ -285,7 +285,7 @@ public class FileSystemTest {
     private static void testDeleteNonexistentFile() {
         System.out.println("\nTest 10: Delete Nonexistent File");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             
             try {
                 fsm.deleteFile("nonexistent.txt");
@@ -308,7 +308,7 @@ public class FileSystemTest {
     private static void testListFiles() {
         System.out.println("\nTest 11: List Files");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             fsm.createFile("file1.txt");
             fsm.createFile("file2.txt");
             fsm.createFile("file3.txt");
@@ -331,7 +331,7 @@ public class FileSystemTest {
     private static void testOverwriteFile() {
         System.out.println("\nTest 12: Overwrite File");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             fsm.createFile("overwrite.txt");
             
             // Write initial content
@@ -359,7 +359,7 @@ public class FileSystemTest {
     private static void testFileTooLarge() {
         System.out.println("\nTest 13: File Too Large");
         try {
-            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             fsm.createFile("huge.txt");
             
             // Try to write more than available blocks
@@ -388,14 +388,14 @@ public class FileSystemTest {
         System.out.println("\nTest 14: File System Persistence");
         try {
             // Create file system and write data
-            FileSystemManager fsm1 = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm1 = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             fsm1.createFile("persist.txt");
             byte[] content = "persistent data".getBytes();
             fsm1.writeFile("persist.txt", content);
             fsm1.close();
             
             // Reopen file system and read data
-            FileSystemManager fsm2 = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE, MAX_FILES, MAX_BLOCKS, BLOCK_SIZE);
+            FileSystemManager fsm2 = FileSystemManager.getInstance(TEST_DISK, TOTAL_SIZE);
             byte[] readContent = fsm2.readFile("persist.txt");
             
             if (Arrays.equals(content, readContent)) {

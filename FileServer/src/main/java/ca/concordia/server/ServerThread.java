@@ -36,7 +36,6 @@ public class ServerThread extends Thread {
     }
 
     public void run() {
-
         try (
                 BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)) {

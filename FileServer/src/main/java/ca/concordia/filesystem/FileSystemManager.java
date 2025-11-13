@@ -47,10 +47,12 @@ public class FileSystemManager {
     private static FileSystemManager instance;
 
     // Private constructor for singleton pattern
-    private FileSystemManager(String filename, int totalSize, int maxFiles, int maxBlocks, int blockSize) throws IOException {
-        this.MAXFILES = maxFiles;
-        this.MAXBLOCKS = maxBlocks;
-        this.BLOCK_SIZE = blockSize;
+    private FileSystemManager(String filename, int totalSize) throws IOException {
+
+        //SET DEFAULT VALUES HERE
+        this.MAXFILES = 8;
+        this.MAXBLOCKS = 16;
+        this.BLOCK_SIZE = 128;
         
         // Open or create the disk file
         this.disk = new RandomAccessFile(filename, "rws");
@@ -82,10 +84,9 @@ public class FileSystemManager {
     }
 
     //Get singleton instance of FileSystemManager
-    public static synchronized FileSystemManager getInstance(String filename, int totalSize, 
-                                                              int maxFiles, int maxBlocks, int blockSize) throws IOException {
+    public static synchronized FileSystemManager getInstance(String filename, int totalSize) throws IOException {
         if (instance == null) {
-            instance = new FileSystemManager(filename, totalSize, maxFiles, maxBlocks, blockSize);
+            instance = new FileSystemManager(filename, totalSize);
         }
         return instance;
     }

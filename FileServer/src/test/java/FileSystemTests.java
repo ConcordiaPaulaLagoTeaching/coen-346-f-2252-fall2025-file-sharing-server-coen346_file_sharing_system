@@ -8,7 +8,7 @@ public class FileSystemTests {
 
     @BeforeAll
     static void setup() throws Exception {
-        fs = new FileSystemManager("testfs.dat", 10 * 128);
+           fs = FileSystemManager.getInstance("testfs.dat", 10 * 128);
     }
 
     @Test
