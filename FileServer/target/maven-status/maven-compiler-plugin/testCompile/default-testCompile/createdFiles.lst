@@ -1,0 +1,5 @@
+ServerTests.class
+FileSystemTests.class
+ThreadManagementTests.class
+helpers/ServerRunner.class
+helpers/ClientRunner.class
