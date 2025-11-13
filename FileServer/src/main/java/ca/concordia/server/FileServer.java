@@ -1,10 +1,10 @@
 package ca.concordia.server;
 
-import ca.concordia.filesystem.FileSystemManager;
-
+import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.BindException;
+
+import ca.concordia.filesystem.FileSystemManager;
 
 public class FileServer {
 
@@ -13,7 +13,6 @@ public class FileServer {
     private ServerSocket serverSocket;
     private Thread serverThread;
     private volatile boolean isRunning = false;
-
 
     public FileServer(int port, String fileSystemName, int totalSize) {
         try {
@@ -58,6 +57,7 @@ public class FileServer {
             e.printStackTrace();
         }
     }
+
 
     private void runServer() {
         try {
