@@ -2,13 +2,8 @@ package ca.concordia.server;
 import ca.concordia.filesystem.FileSystemManager;
 import ca.concordia.server.ServerThread;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.net.BindException;
 
 public class FileServer {
@@ -19,18 +14,11 @@ public class FileServer {
     private Thread serverThread;
     private volatile boolean isRunning = false;
 
-    //semaphores for concurrency control
-    private final Semaphore mutex = new Semaphore(1);
-    private final Semaphore isEmpty = new Semaphore(1);
-    private final Semaphore writeLock = new Semaphore(1);
-    private final AtomicInteger readCount = new AtomicInteger(0);
-
-    public FileServer(int port, String fileSystemName, int totalSize){
-        try{
-            FileSystemManager fsManager = FileSystemManager.getInstance(fileSystemName, totalSize);
-            this.fsManager = fsManager;
+    public FileServer(int port, String fileSystemName, int totalSize) {
+        try {
+            this.fsManager = FileSystemManager.getInstance(fileSystemName, totalSize);
             this.port = port;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Could not initialize FileSystemManager.");
         }
@@ -43,26 +31,24 @@ public class FileServer {
         serverThread.start();
     }
 
-    private void runServer(){
-
+    private void runServer() {
         try {
             serverSocket = new ServerSocket(port);
             isRunning = true;
-            System.out.println("Server started. Listening on port " + this.port +"...");
+            System.out.println("Server started. Listening on port " + this.port + "...");
 
             while (isRunning) {
                 try {
                     Socket clientSocket = serverSocket.accept();
                     System.out.println("Handling client: " + clientSocket);
 
-                    //create thread to handle this client
-                    ServerThread clientHandler = new ServerThread(clientSocket, fsManager, mutex, isEmpty, writeLock, readCount);
+                    // Create thread to handle this client
+                    ServerThread clientHandler = new ServerThread(clientSocket, fsManager);
                     clientHandler.start();
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.err.println("Error handling client connection.");
                 }
-                break;
             }
         } catch (BindException e) {
             System.err.println("ERROR: Port " + port + " is already in use. Cannot start server.");
