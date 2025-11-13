@@ -59,7 +59,7 @@ public class FileSystemManager {
         }
     }
 
-    // delete name
+    // delete nmae
     public void deleteFile(String fileName) throws Exception {
         globalLock.lock();
         try {
@@ -78,7 +78,7 @@ public class FileSystemManager {
         }
     }
 
-    // write name/byte
+    // write name/byte method
     public void writeFile(String fileName, byte[] contents) throws Exception {
         if (contents == null) contents = new byte[0];
         if (contents.length > BLOCK_SIZE) throw new Exception("File is too big (max " + BLOCK_SIZE + " bytes)");
@@ -86,13 +86,13 @@ public class FileSystemManager {
         globalLock.lock();
         try {
             int idx = findFileIndex(fileName);
-            if (idx == -1) throw new Exception("File not found");
+            if (idx == -1) throw new Exception("Ifle not found");
             FEntry fe = inodeTable[idx];
 
             short target = fe.getFirstBlock();
             if (!isValidBlock(target)) {
                 int free = findFreeBlock();
-                if (free == -1) throw new Exception("No free space");
+                if (free == -1) throw new Exception("no free space");
                 target = (short) free;
             }
 
@@ -110,7 +110,7 @@ public class FileSystemManager {
         }
     }
 
-    // Read name
+    // Read name method
     public byte[] readFile(String fileName) throws Exception {
         globalLock.lock();
         try {
@@ -123,7 +123,7 @@ public class FileSystemManager {
             short b = fe.getFirstBlock();
 
             if (size == 0) return out;
-            if (!isValidBlock(b)) throw new Exception("File data missing");
+            if (!isValidBlock(b)) throw new Exception("data missing");
 
             readBlock(b, out, 0, size);
             return out;
@@ -149,7 +149,7 @@ public class FileSystemManager {
     // Helper category::
 
     private void ensureValidName(String name) throws Exception {
-        if (name == null || name.isEmpty()) throw new Exception("Invalid filename");
+        if (name == null || name.isEmpty()) throw new Exception("Invalid File Name");
     }
 
     private int findFileIndex(String name) {
