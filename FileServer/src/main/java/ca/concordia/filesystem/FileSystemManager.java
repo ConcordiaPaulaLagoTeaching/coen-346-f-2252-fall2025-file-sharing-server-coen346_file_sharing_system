@@ -44,6 +44,9 @@ public class FileSystemManager {
     private final int metadataBlocks;    // Number of blocks used for metadata
     private final int dataBlockStart;    // Starting block index for file data
     
+    // Track if this instance is closed
+    private volatile boolean isClosed = false;
+    
     // Singleton instance
     private static FileSystemManager instance;
 
@@ -87,7 +90,8 @@ public class FileSystemManager {
 
     //Get singleton instance of FileSystemManager
     public static synchronized FileSystemManager getInstance(String filename, int totalSize) throws IOException {
-        if (instance == null) {
+        if (instance == null || instance.isClosed) {
+            System.out.println("[DEBUG] Creating new FileSystemManager instance. Old instance closed: " + (instance != null && instance.isClosed));
             instance = new FileSystemManager(filename, totalSize);
         }
         return instance;
@@ -122,6 +126,9 @@ public class FileSystemManager {
 
     // Save metadata (FEntry and FNode tables) to disk
     private void saveMetadata() throws IOException {
+        if (isClosed || disk.getChannel() == null || !disk.getChannel().isOpen()) {
+            return; // Skip if already closed
+        }
         disk.seek(0);
         
         // Write FEntry table
@@ -537,6 +544,7 @@ public class FileSystemManager {
         try {
             saveMetadata();
             disk.close();
+            isClosed = true;
         } finally {
             rwLock.writeLock().unlock();
         }
