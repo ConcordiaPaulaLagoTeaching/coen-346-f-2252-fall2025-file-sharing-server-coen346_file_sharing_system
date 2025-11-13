@@ -1,12 +1,13 @@
 package ca.concordia.filesystem;
 
-import ca.concordia.filesystem.datastructures.FEntry;
-import ca.concordia.filesystem.datastructures.FNode;
-
-import java.io.*;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import ca.concordia.filesystem.datastructures.FEntry;
+import ca.concordia.filesystem.datastructures.FNode;
 
 /**
  * FileSystemManager manages a simulated file system stored in a single file.
@@ -100,7 +101,7 @@ public class FileSystemManager {
         
         // Initialize FNode table (all free)
         for (int i = 0; i < MAXBLOCKS; i++) {
-            fnodeTable[i] = new FNode(-i);  // Negative index indicates free
+            fnodeTable[i] = new FNode(-(i + 1));  // -(i+1) indicates free block i
         }
         
         // Write metadata to disk

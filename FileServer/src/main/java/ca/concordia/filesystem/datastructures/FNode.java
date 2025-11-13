@@ -57,19 +57,19 @@ public class FNode implements Serializable {
 
     // Mark this FNode as in use
     public void markInUse() {
-        if (blockIndex < 0) {
-            blockIndex = -blockIndex;  // Convert negative to positive
-        }
+    if (blockIndex < 0) {
+        blockIndex = -blockIndex - 1;  // Decode: -(i+1) -> i
     }
+}
 
     // Mark this FNode as free
 
     public void markFree() {
-        if (blockIndex >= 0) {
-            blockIndex = -blockIndex;  // Convert positive to negative
-        }
-        nextBlock = -1;  // Reset next pointer
+    if (blockIndex >= 0) {
+        blockIndex = -(blockIndex + 1);  // Encode: i -> -(i+1)
     }
+    nextBlock = -1;  // Reset next pointer
+}
 
     @Override
     public String toString() {

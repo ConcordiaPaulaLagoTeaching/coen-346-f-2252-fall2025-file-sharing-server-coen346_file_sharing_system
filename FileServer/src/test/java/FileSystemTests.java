@@ -32,7 +32,7 @@ public class FileSystemTests {
             // If reflection fails, just continue
         }
         
-        fs = FileSystemManager.getInstance(TEST_FS, 10 * 128);
+        fs = FileSystemManager.getInstance(TEST_FS, 16 * 128);
     }
 
     @AfterEach

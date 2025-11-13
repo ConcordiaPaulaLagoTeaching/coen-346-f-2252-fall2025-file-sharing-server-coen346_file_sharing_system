@@ -86,8 +86,12 @@ public class ServerTests {
     ServerRunner server1 = new ServerRunner();
     server1.start();
 
-    ClientRunner.send("CREATE persist");
-    ClientRunner.send("WRITE persist saveddata");
+    String createResp = ClientRunner.send("CREATE persist");
+    System.out.println("CREATE response: " + createResp);
+    
+    String writeResp = ClientRunner.send("WRITE persist saveddata");
+    System.out.println("WRITE response: " + writeResp);
+    
     server1.stop();
 
     // Give filesystem time to flush
@@ -98,7 +102,8 @@ public class ServerTests {
     server2.start();
 
     String response = ClientRunner.send("READ persist");
-    assertTrue(response.contains("saveddata"), "File data not persisted across restart. Got: " + response);
+    System.out.println("READ response: " + response);
+    assertTrue(response.contains("saveddata"), "File data not persisted. Got: " + response);
 
     server2.stop();
     

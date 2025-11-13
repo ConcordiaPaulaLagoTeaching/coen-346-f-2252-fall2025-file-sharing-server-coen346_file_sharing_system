@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="ThreadManagementTests" time="0.912" tests="3" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/test-classes:/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/classes:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.3/junit-jupiter-5.9.3.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.3/junit-jupiter-api-5.9.3.jar:/home/user/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/user/.m2/repository/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar:/home/user/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.3/junit-jupiter-params-5.9.3.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.3/junit-jupiter-engine-5.9.3.jar:/home/user/.m2/repository/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar:"/>
+    <property name="java.vm.vendor" value="Ubuntu"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://ubuntu.com/"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-17-openjdk-amd64/lib"/>
+    <property name="sun.java.command" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/surefire/surefirebooter-20251113133820851_3.jar /home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/surefire 2025-11-13T13-38-20_790-jvmRun1 surefire-20251113133820851_1tmp surefire_0-20251113133820851_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/test-classes:/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/classes:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.3/junit-jupiter-5.9.3.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.3/junit-jupiter-api-5.9.3.jar:/home/user/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/user/.m2/repository/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar:/home/user/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.3/junit-jupiter-params-5.9.3.jar:/home/user/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.3/junit-jupiter-engine-5.9.3.jar:/home/user/.m2/repository/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/user"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-07-15"/>
+    <property name="java.home" value="/usr/lib/jvm/java-17-openjdk-amd64"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer/target/surefire/surefirebooter-20251113133820851_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.16+8-Ubuntu-0ubuntu122.04.1"/>
+    <property name="user.name" value="user"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="6.8.0-87-generic"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/home/user/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-17"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="17.0.16"/>
+    <property name="user.dir" value="/home/user/Desktop/file-sharing-server-mint-testing/FileServer"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Ubuntu"/>
+    <property name="java.vm.version" value="17.0.16+8-Ubuntu-0ubuntu122.04.1"/>
+    <property name="java.specification.maintenance.version" value="1"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="testReadersAndWritersSynchronization" classname="ThreadManagementTests" time="0.118">
+    <system-out><![CDATA[Server started. Listening on port 12345...
+Test server is ready on port 12345
+Client connected: /127.0.0.1:55352
+Client disconnected: /127.0.0.1:55352
+Client connected: /127.0.0.1:55360
+Received from client: CREATE shared
+Client disconnected: /127.0.0.1:55360
+Client connected: /127.0.0.1:55364
+Received from client: WRITE shared hello
+Client disconnected: /127.0.0.1:55364
+Client connected: /127.0.0.1:55378
+Client connected: /127.0.0.1:55394
+Received from client: READ shared
+Client connected: /127.0.0.1:55396
+Received from client: READ shared
+Client connected: /127.0.0.1:55404
+Client disconnected: /127.0.0.1:55394
+Client disconnected: /127.0.0.1:55378
+Reader got: SUCCESS: 
+Reader got: SUCCESS: 
+Received from client: READ shared
+Client connected: /127.0.0.1:55418
+Received from client: READ shared
+Reader got: SUCCESS: 
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55396
+Reader got: SUCCESS: 
+Client disconnected: /127.0.0.1:55418
+Reader got: SUCCESS: 
+Client disconnected: /127.0.0.1:55404
+Client connected: /127.0.0.1:55434
+Received from client: WRITE shared world
+Client disconnected: /127.0.0.1:55434
+Writer got: ERROR: ERROR: file too large
+]]></system-out>
+    <system-err><![CDATA[java.io.IOException: Stream Closed
+	at java.base/java.io.RandomAccessFile.seek0(Native Method)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+]]></system-err>
+  </testcase>
+  <testcase name="testDeadlockPreventionUnderStress" classname="ThreadManagementTests" time="0.064">
+    <system-out><![CDATA[Client connected: /127.0.0.1:55440
+Client connected: /127.0.0.1:55452
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55440
+Client connected: /127.0.0.1:55468
+Received from client: READ shared
+Client connected: /127.0.0.1:55484
+Received from client: WRITE shared data0
+Client disconnected: /127.0.0.1:55452
+Client connected: /127.0.0.1:55486
+Received from client: WRITE shared data3
+Client connected: /127.0.0.1:55504
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55484
+Client disconnected: /127.0.0.1:55468
+Client connected: /127.0.0.1:55502
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55486
+Client connected: /127.0.0.1:55512
+Client disconnected: /127.0.0.1:55504
+Received from client: WRITE shared data6
+Client connected: /127.0.0.1:55528
+Received from client: READ shared
+Client connected: /127.0.0.1:55536
+Received from client: READ shared
+Client connected: /127.0.0.1:55534
+Client disconnected: /127.0.0.1:55502
+Client disconnected: /127.0.0.1:55528
+Client disconnected: /127.0.0.1:55512
+Received from client: READ shared
+Client connected: /127.0.0.1:55544
+Received from client: WRITE shared data9
+Client connected: /127.0.0.1:55558
+Client disconnected: /127.0.0.1:55536
+Received from client: READ shared
+Client connected: /127.0.0.1:55560
+Received from client: WRITE shared data12
+Client disconnected: /127.0.0.1:55534
+Client connected: /127.0.0.1:55568
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55544
+Client connected: /127.0.0.1:55572
+Client disconnected: /127.0.0.1:55560
+Received from client: READ shared
+Client connected: /127.0.0.1:55588
+Client disconnected: /127.0.0.1:55568
+Client disconnected: /127.0.0.1:55558
+Client connected: /127.0.0.1:55592
+Received from client: WRITE shared data15
+Client connected: /127.0.0.1:55608
+Received from client: READ shared
+Received from client: READ shared
+Client connected: /127.0.0.1:55620
+Received from client: WRITE shared data18
+Client disconnected: /127.0.0.1:55572
+Client disconnected: /127.0.0.1:55588
+Client connected: /127.0.0.1:55630
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55608
+Client connected: /127.0.0.1:55634
+Client disconnected: /127.0.0.1:55592
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55620
+Client connected: /127.0.0.1:55648
+Client disconnected: /127.0.0.1:55630
+Received from client: WRITE shared data21
+Client connected: /127.0.0.1:55652
+Received from client: READ shared
+Client connected: /127.0.0.1:55662
+Client disconnected: /127.0.0.1:55634
+Received from client: READ shared
+Client connected: /127.0.0.1:55670
+Client disconnected: /127.0.0.1:55648
+Received from client: WRITE shared data24
+Client connected: /127.0.0.1:55684
+Client disconnected: /127.0.0.1:55662
+Received from client: READ shared
+Client connected: /127.0.0.1:55686
+Client disconnected: /127.0.0.1:55652
+Received from client: READ shared
+Client connected: /127.0.0.1:55688
+Client disconnected: /127.0.0.1:55670
+Client disconnected: /127.0.0.1:55684
+Received from client: READ shared
+Client connected: /127.0.0.1:55704
+Client connected: /127.0.0.1:55720
+Received from client: WRITE shared data27
+Client disconnected: /127.0.0.1:55686
+Received from client: READ shared
+Client connected: /127.0.0.1:55730
+Received from client: WRITE shared data30
+Client disconnected: /127.0.0.1:55704
+Client connected: /127.0.0.1:55734
+Client disconnected: /127.0.0.1:55688
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55720
+Client connected: /127.0.0.1:55740
+Client connected: /127.0.0.1:55744
+Received from client: READ shared
+Received from client: WRITE shared data33
+Client connected: /127.0.0.1:55746
+Client disconnected: /127.0.0.1:55730
+Client connected: /127.0.0.1:55756
+Received from client: READ shared
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55734
+Client disconnected: /127.0.0.1:55740
+Client connected: /127.0.0.1:55764
+Client disconnected: /127.0.0.1:55744
+Client disconnected: /127.0.0.1:55746
+Client connected: /127.0.0.1:55770
+Received from client: WRITE shared data36
+Received from client: READ shared
+Client connected: /127.0.0.1:55774
+Received from client: READ shared
+Client connected: /127.0.0.1:55776
+Client disconnected: /127.0.0.1:55756
+Received from client: WRITE shared data39
+Client connected: /127.0.0.1:55778
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55770
+Client disconnected: /127.0.0.1:55764
+Client connected: /127.0.0.1:55780
+Client disconnected: /127.0.0.1:55774
+Client connected: /127.0.0.1:55794
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55776
+Client connected: /127.0.0.1:55802
+Received from client: WRITE shared data42
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55778
+Client connected: /127.0.0.1:55808
+Client disconnected: /127.0.0.1:55794
+Received from client: READ shared
+Client connected: /127.0.0.1:55818
+Client disconnected: /127.0.0.1:55780
+Client connected: /127.0.0.1:55828
+Received from client: WRITE shared data45
+Received from client: READ shared
+Received from client: READ shared
+Client connected: /127.0.0.1:55832
+Client disconnected: /127.0.0.1:55802
+Client connected: /127.0.0.1:55840
+Client disconnected: /127.0.0.1:55828
+Client disconnected: /127.0.0.1:55818
+Client disconnected: /127.0.0.1:55808
+Received from client: WRITE shared data48
+Received from client: READ shared
+Client disconnected: /127.0.0.1:55840
+Client disconnected: /127.0.0.1:55832
+]]></system-out>
+    <system-err><![CDATA[java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+java.lang.Exception: ERROR: file too large
+	at ca.concordia.filesystem.FileSystemManager.writeFile(FileSystemManager.java:281)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:81)
+]]></system-err>
+  </testcase>
+  <testcase name="testMultipleClientsConcurrentAccess" classname="ThreadManagementTests" time="0.015">
+    <system-out><![CDATA[Client connected: /127.0.0.1:55842
+Client connected: /127.0.0.1:55852
+Client connected: /127.0.0.1:55868
+Client connected: /127.0.0.1:55884
+Received from client: CREATE file1
+Received from client: CREATE file2
+Client connected: /127.0.0.1:55878
+Client connected: /127.0.0.1:55892
+Received from client: CREATE file4
+Received from client: CREATE file0
+Client connected: /127.0.0.1:55904
+Received from client: CREATE file3
+Received from client: CREATE file5
+Client connected: /127.0.0.1:55920
+Received from client: CREATE file6
+Client connected: /127.0.0.1:55934
+Client disconnected: /127.0.0.1:55884
+Client disconnected: /127.0.0.1:55842
+Received from client: CREATE file7
+Client connected: /127.0.0.1:55942
+Client disconnected: /127.0.0.1:55878
+Client disconnected: /127.0.0.1:55852
+Client disconnected: /127.0.0.1:55904
+Received from client: CREATE file8
+Client disconnected: /127.0.0.1:55920
+Client connected: /127.0.0.1:55948
+Client disconnected: /127.0.0.1:55892
+Client disconnected: /127.0.0.1:55934
+Received from client: CREATE file9
+Client disconnected: /127.0.0.1:55868
+Client disconnected: /127.0.0.1:55942
+Client connected: /127.0.0.1:55962
+Received from client: CREATE file10
+Client connected: /127.0.0.1:55978
+Received from client: CREATE file11
+Client connected: /127.0.0.1:55990
+Received from client: CREATE file12
+Client disconnected: /127.0.0.1:55948
+Client disconnected: /127.0.0.1:55962
+Received from client: CREATE file13
+Client connected: /127.0.0.1:56002
+Client disconnected: /127.0.0.1:55990
+Client disconnected: /127.0.0.1:55978
+Client connected: /127.0.0.1:56006
+Client connected: /127.0.0.1:56018
+Received from client: CREATE file14
+Received from client: CREATE file15
+Client connected: /127.0.0.1:56020
+Received from client: CREATE file16
+Client disconnected: /127.0.0.1:56002
+Client disconnected: /127.0.0.1:56006
+Client connected: /127.0.0.1:56024
+Received from client: CREATE file17
+Client disconnected: /127.0.0.1:56018
+Client connected: /127.0.0.1:56032
+Client disconnected: /127.0.0.1:56020
+Received from client: CREATE file18
+Received from client: CREATE file19
+Client disconnected: /127.0.0.1:56024
+Client disconnected: /127.0.0.1:56032
+]]></system-out>
+    <system-err><![CDATA[java.io.IOException: Stream Closed
+	at java.base/java.io.RandomAccessFile.seek0(Native Method)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.io.IOException: Stream Closed
+	at java.base/java.io.RandomAccessFile.seek0(Native Method)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.io.IOException: Stream Closed
+	at java.base/java.io.RandomAccessFile.seek0(Native Method)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.io.IOException: Stream Closed
+	at java.base/java.io.RandomAccessFile.seek0(Native Method)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.io.IOException: Stream Closed
+	at java.base/java.io.RandomAccessFile.seek0(Native Method)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.io.IOException: Stream Closed
+	at java.base/java.io.RandomAccessFile.seek0(Native Method)
+	at java.base/java.io.RandomAccessFile.seek(RandomAccessFile.java:590)
+	at ca.concordia.filesystem.FileSystemManager.saveMetadata(FileSystemManager.java:119)
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:196)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+java.lang.Exception: ERROR: maximum number of files reached
+	at ca.concordia.filesystem.FileSystemManager.createFile(FileSystemManager.java:189)
+	at ca.concordia.server.ServerThread.run(ServerThread.java:59)
+]]></system-err>
+  </testcase>
+</testsuite>

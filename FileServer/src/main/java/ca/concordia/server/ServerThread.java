@@ -28,7 +28,12 @@ public class ServerThread extends Thread {
         ) {
             String line;
             // Read commands until client disconnects or sends empty line
-            while ((line = reader.readLine()) != null && !line.trim().isEmpty()) {
+            while ((line = reader.readLine()) != null) {
+                 if (line.trim().isEmpty()) {
+                     writer.println("ERROR: Empty command");
+                     continue;  // Don't exit loop, just skip this iteration
+                     }
+    
                 System.out.println("Received from client: " + line);
                 
                 // Parse command - split into max 3 parts (command, filename, payload)
