@@ -1,25 +1,36 @@
 package helpers;
 
-import java.io.*;
-import java.net.*;
+import ca.concordia.server.FileServer;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.time.Duration;
 import java.time.Instant;
 
 public class ServerRunner {
-    private Process process;
+    
+    private FileServer server;
 
     public void start() throws IOException, InterruptedException {
-        process = new ProcessBuilder("java", "-cp", "target/classes", "ca.concordia.Main")
-                .redirectErrorStream(true)
-                .start();
-        // Wait for port to become available (server ready)
+        // Create and start server directly (not as external process)
+        server = new FileServer(12345, "testfs.dat", 16 * 128);
+        
+        // Start in background thread
+        new Thread(() -> server.start()).start();
+        
+        // Wait for port to become available (server is ready)
         Instant start = Instant.now();
         while (!isPortOpen("localhost", 12345)) {
-            if (Duration.between(start, Instant.now()).getSeconds() > 10)
-                throw new RuntimeException("Server failed to start within timeout");
+            if (Duration.between(start, Instant.now()).getSeconds() > 10) {
+                throw new RuntimeException("Server failed to start within 10 second timeout");
+            }
             Thread.sleep(200);
         }
+        
+        System.out.println("Test server is ready on port 12345");
     }
+
 
     private boolean isPortOpen(String host, int port) {
         try (Socket socket = new Socket()) {
@@ -32,9 +43,16 @@ public class ServerRunner {
 
 
     public void stop() {
-        if (process != null && process.isAlive()) {
-            process.destroy();
+        if (server != null) {
+            server.stop(); // Call the new stop() method
+            System.out.println("Test server stopped");
+        }
+        
+        // Give the OS time to fully release the port
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            // Ignore interruption during cleanup
         }
     }
 }
-
