@@ -102,7 +102,7 @@ public class FileSystemManager {
                 freeblocklist[current] = (current >= metadatablocks);
 
                 write_FNode_OD(current);
-                if (current >= metadatablocks) empty_data_block(current);
+                if (current >= metadatablocks) zero_data_block(current);
                 current = next;
             }
             inodeTable[index] = null;
@@ -168,7 +168,7 @@ public class FileSystemManager {
                 fnodeNext[index_node] = -1;
                 freeblocklist[index_node] = (index_node >= metadatablocks);
                 write_FNode_OD(index_node);
-                if (index_node >= metadatablocks) empty_data_block(index_node);
+                if (index_node >= metadatablocks) zerodatablock(index_node);
             }
 
             int offset =0;
@@ -356,7 +356,7 @@ public class FileSystemManager {
     }
 
 
-    private void empty_data_block (int index_block) throws IOException { //erases the contents of the data block and changes it to zeroes
+    private void zero_data_block (int index_block) throws IOException {
         long pos = (long) index_block * BLOCK_SIZE;
         disk.seek(pos);
         disk.write(new byte[BLOCK_SIZE]);
