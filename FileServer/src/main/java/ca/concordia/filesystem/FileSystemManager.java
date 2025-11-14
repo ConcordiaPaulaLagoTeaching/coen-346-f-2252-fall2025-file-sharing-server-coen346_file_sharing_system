@@ -13,7 +13,7 @@ public class FileSystemManager {
     private final RandomAccessFile disk;
     private final ReentrantLock globalLock = new ReentrantLock();
 
-    private static final int BLOCK_SIZE = 128; // Example block size
+    private static final int BLOCK_SIZE = 128; // Example block size f
 
     private FEntry[] inodeTable; // Array of inodes
     private boolean[] freeBlockList; // Bitmap for free blocks
