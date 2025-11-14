@@ -13,7 +13,7 @@ public class FNode {
     }
 
     public FNode(int blockIndex) {
-        this.blockIndex = blockIndex;
+        this.blockIndex = (short)blockIndex;
         this.nextBlock = NO_NEXT;
     }
 

@@ -57,13 +57,14 @@ public class FileSystemManager {
         globalLock.lock();
         try {
             ensureValidName(fileName);
-            if (findFileIndex(fileName) != -1) {
-                throw new Exception("File exists");
+
+            int existing = findFileIndex(fileName);
+            if (existing != -1) {
+                return;
             }
+
             int slot = findFreeInode();
-            if (slot == -1) {
-                throw new Exception("No free file entries");
-            }
+            if (slot == -1) throw new Exception("No free file entries");
 
             FEntry fe = new FEntry(fileName);
             fe.setFilesize((short) 0);
