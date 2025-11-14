@@ -1,6 +1,7 @@
 package ca.concordia.filesystem;
 
 import ca.concordia.filesystem.datastructures.FEntry;
+import ca.concordia.filesystem.datastructures.FNode;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,14 +52,19 @@ public class FileSystemManager {
         instance = this;
     }
 
-    // create name
+    // create <filename>
     public void createFile(String fileName) throws Exception {
         globalLock.lock();
         try {
             ensureValidName(fileName);
-            if (findFileIndex(fileName) != -1) throw new Exception("File exists");
+            if (findFileIndex(fileName) != -1) {
+                throw new Exception("File exists");
+            }
             int slot = findFreeInode();
-            if (slot == -1) throw new Exception("No free file entries");
+            if (slot == -1) {
+                throw new Exception("No free file entries");
+            }
+
             FEntry fe = new FEntry(fileName);
             fe.setFilesize((short) 0);
             fe.setFirstBlock((short) -1);
@@ -68,33 +74,39 @@ public class FileSystemManager {
         }
     }
 
-    // delete nmae
+    // delete <filename>
     public void deleteFile(String fileName) throws Exception {
         globalLock.lock();
         try {
             int idx = findFileIndex(fileName);
-            if (idx == -1) throw new Exception("File not found");
+            if (idx == -1) {
+                throw new Exception("File not found");
+            }
             FEntry fe = inodeTable[idx];
 
             short firstFNode = fe.getFirstBlock();
             if (firstFNode >= 0) {
                 freeChain(firstFNode, true);
             }
+
             inodeTable[idx] = null;
         } finally {
             globalLock.unlock();
         }
     }
 
-    // write name/byte method
+    // write <filename> <content>
     public void writeFile(String fileName, byte[] contents) throws Exception {
-        if (contents == null) contents = new byte[0];
-        if (contents.length > BLOCK_SIZE) throw new Exception("File is too big (max " + BLOCK_SIZE + " bytes)");
+        if (contents == null) {
+            contents = new byte[0];
+        }
 
         globalLock.lock();
         try {
             int idx = findFileIndex(fileName);
-            if (idx == -1) throw new Exception("Ifle not found");
+            if (idx == -1) {
+                throw new Exception("File not found");
+            }
             FEntry fe = inodeTable[idx];
 
             int size = contents.length;
@@ -118,7 +130,7 @@ public class FileSystemManager {
 
             short oldFirst = fe.getFirstBlock();
             if (oldFirst >= 0) {
-                freeChain(oldFirst, false); // free old blocks/nodes, no need to zero
+                freeChain(oldFirst, false);
             }
 
             int[] fnodeIdx = new int[neededBlocks];
@@ -168,35 +180,63 @@ public class FileSystemManager {
         }
     }
 
-    // Read name method
+    // read <filename>
     public byte[] readFile(String fileName) throws Exception {
         globalLock.lock();
         try {
             int idx = findFileIndex(fileName);
-            if (idx == -1) throw new Exception("File not found");
+            if (idx == -1) {
+                throw new Exception("File not found");
+            }
             FEntry fe = inodeTable[idx];
 
             int size = Short.toUnsignedInt(fe.getFilesize());
             byte[] out = new byte[size];
-            short b = fe.getFirstBlock();
+            if (size == 0) {
+                return out;
+            }
 
-            if (size == 0) return out;
-            if (!isValidBlock(b)) throw new Exception("data missing");
+            short fnodeIndex = fe.getFirstBlock();
+            if (fnodeIndex < 0) {
+                throw new Exception("data missing");
+            }
 
-            readBlock(b, out, 0, size);
+            int offset = 0;
+            while (fnodeIndex >= 0 && offset < size) {
+                FNode node = fnodes[fnodeIndex];
+                short blk = node.getBlockIndex();
+                if (!isValidBlock(blk)) {
+                    throw new Exception("data missing");
+                }
+
+                int remaining = size - offset;
+                int len = Math.min(BLOCK_SIZE, remaining);
+
+                readBlock(blk, out, offset, len);
+                offset += len;
+
+                short next = node.getNextBlock();
+                if (next == FNode.NO_NEXT) {
+                    break;
+                }
+                fnodeIndex = next;
+            }
+
             return out;
         } finally {
             globalLock.unlock();
         }
     }
 
-    //List method
+    // list
     public String[] listFiles() {
         globalLock.lock();
         try {
             ArrayList<String> names = new ArrayList<>();
             for (FEntry fe : inodeTable) {
-                if (fe != null) names.add(fe.getFilename());
+                if (fe != null) {
+                    names.add(fe.getFilename());
+                }
             }
             return names.toArray(new String[0]);
         } finally {
@@ -204,26 +244,50 @@ public class FileSystemManager {
         }
     }
 
-    // Helper category::
+    //Helepers for methods
 
     private void ensureValidName(String name) throws Exception {
-        if (name == null || name.isEmpty()) throw new Exception("Invalid File Name");
+        if (name == null || name.isEmpty()) {
+            throw new Exception("Invalid File Name");
+        }
+        if (name.length() > 11) {
+            throw new Exception("ERROR: filename too large");
+        }
     }
 
     private int findFileIndex(String name) {
         for (int i = 0; i < MAXFILES; i++) {
-            if (inodeTable[i] != null && inodeTable[i].getFilename().equals(name)) return i;
+            if (inodeTable[i] != null && inodeTable[i].getFilename().equals(name)) {
+                return i;
+            }
         }
         return -1;
     }
 
     private int findFreeInode() {
-        for (int i = 0; i < MAXFILES; i++) if (inodeTable[i] == null) return i;
+        for (int i = 0; i < MAXFILES; i++) {
+            if (inodeTable[i] == null) {
+                return i;
+            }
+        }
         return -1;
     }
 
     private int findFreeBlock() {
-        for (int i = 0; i < MAXBLOCKS; i++) if (freeBlockList[i]) return i;
+        for (int i = 0; i < MAXBLOCKS; i++) {
+            if (freeBlockList[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int findFreeFNode() {
+        for (int i = 0; i < MAXBLOCKS; i++) {
+            if (fnodes[i].isFree()) {
+                return i;
+            }
+        }
         return -1;
     }
 
@@ -250,7 +314,9 @@ public class FileSystemManager {
             int n = disk.read(dst, off, len);
             if (n < len) {
                 int start = off + Math.max(n, 0);
-                for (int i = start; i < off + len; i++) dst[i] = 0;
+                for (int i = start; i < off + len; i++) {
+                    dst[i] = 0;
+                }
             }
         } catch (IOException e) {
             throw new Exception("Disk read failed");
@@ -271,4 +337,28 @@ public class FileSystemManager {
         }
     }
 
+    private void freeChain(short firstFNode, boolean zeroData) throws Exception {
+        short current = firstFNode;
+
+        while (current >= 0 && current < MAXBLOCKS) {
+            FNode node = fnodes[current];
+            short blk = node.getBlockIndex();
+            short next = node.getNextBlock();
+
+            if (isValidBlock(blk)) {
+                if (zeroData) {
+                    zeroBlock(blk);
+                }
+                freeBlockList[blk] = true;
+            }
+
+            node.reset();
+
+            if (next == FNode.NO_NEXT) {
+                break;
+            }
+            current = next;
+        }
+    }
 }
+
