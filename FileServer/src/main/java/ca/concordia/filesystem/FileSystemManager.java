@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import java.io.RandomAccessFile;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class FileSystemManager {
 
@@ -16,6 +17,7 @@ public class FileSystemManager {
     //private final static FileSystemManager instance;
     private final RandomAccessFile disk;
     private final ReentrantLock globalLock = new ReentrantLock();
+    private final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock(); // NEW lock for read/write/list
 
     private static final int BLOCK_SIZE = 128; // Example block size
 
@@ -290,7 +292,7 @@ public class FileSystemManager {
 
         // Write data to file
     public void writeFile(String fileName, byte[] data) throws Exception {
-        globalLock.lock();
+        rwLock.writeLock().lock();
         try {
             int idx = findFileIndex(fileName);
             if (idx == -1) {
@@ -352,13 +354,13 @@ public class FileSystemManager {
             saveMetadata();
 
         } finally {
-            globalLock.unlock();
+            rwLock.writeLock().unlock();
         }
     }
 
     // Read file data
     public byte[] readFile(String fileName) throws Exception {
-        globalLock.lock();
+        rwLock.readLock().lock();
         try {
             int idx = findFileIndex(fileName);
             if (idx == -1) {
@@ -394,13 +396,13 @@ public class FileSystemManager {
             return result;
 
         } finally {
-            globalLock.unlock();
+            rwLock.readLock().unlock();
         }
     }
 
     // list files
     public String[] listFiles() {
-        globalLock.lock();
+        rwLock.readLock().lock();
         try {
             int count = 0;
             for (FEntry entry : inodeTable) {
@@ -419,7 +421,7 @@ public class FileSystemManager {
 
             return names;
         } finally {
-            globalLock.unlock();
+            rwLock.readLock().unlock();
         }
     }
 
