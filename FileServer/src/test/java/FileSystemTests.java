@@ -1,32 +1,48 @@
-import ca.concordia.filesystem.FileSystemManager;
+package ca.concordia.filesystem;
+
+import ca.concordia.filesystem.datastructures.FileSystemManager;
 import org.junit.jupiter.api.*;
+
+import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FileSystemTests {
-    static FileSystemManager fs;
 
-    @BeforeAll
-    static void setup() throws Exception {
-        fs = new FileSystemManager("testfs.dat", 10 * 128);
+    FileSystemManager fs;
+
+    @BeforeEach
+    void setup() throws Exception {
+
+        // Always reset the disk so every test starts clean
+        File disk = new File("testfs.dat");
+        if (disk.exists()) {
+            disk.delete();
+        }
+
+        // Create new fresh filesystem for EACH test
+        fs = new FileSystemManager("testfs.dat");
     }
 
     @Test
     void testCreateFile() throws Exception {
         fs.createFile("a.txt");
-        boolean fileFound = false;
-        for (String fileName : fs.listFiles()) {
-            if(fileName.equals("a.txt")) {
-                fileFound = true;
+        boolean found = false;
+
+        for (String name : fs.listFiles()) {
+            if (name.equals("a.txt")) {
+                found = true;
                 break;
             }
         }
-        assertTrue(fileFound);
+
+        assertTrue(found);
     }
 
     @Test
     void testTooLongFilename() {
-        Exception ex = assertThrows(Exception.class, () -> fs.createFile("verylongname.txt"));
+        Exception ex = assertThrows(Exception.class,
+                () -> fs.createFile("verylongname.txt"));
         assertTrue(ex.getMessage().toLowerCase().contains("filename"));
         assertTrue(ex.getMessage().toLowerCase().contains("long"));
     }
@@ -41,7 +57,9 @@ public class FileSystemTests {
     @Test
     void testWriteAndReadLongFile() throws Exception {
         fs.createFile("c.txt");
-        String longContent = "This is a long content that exceeds 128 bytes. ".repeat(5);
+        String longContent =
+                "This is a long content that exceeds 128 bytes. ".repeat(5);
+
         fs.writeFile("c.txt", longContent.getBytes());
         assertEquals(longContent, new String(fs.readFile("c.txt")));
     }
@@ -50,8 +68,9 @@ public class FileSystemTests {
     void testDeleteFile() throws Exception {
         fs.createFile("b.txt");
         fs.deleteFile("b.txt");
-        for(String fileName : fs.listFiles()){
-            assertNotEquals("b.txt", fileName);
+
+        for (String name : fs.listFiles()) {
+            assertNotEquals("b.txt", name);
         }
     }
 }
