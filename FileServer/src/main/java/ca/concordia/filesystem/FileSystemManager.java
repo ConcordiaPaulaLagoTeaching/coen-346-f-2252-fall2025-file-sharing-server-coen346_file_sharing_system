@@ -33,6 +33,16 @@ public class FileSystemManager {
         throw new UnsupportedOperationException("Method not implemented yet.");
     }
 
+<<<<<<< HEAD
 
+=======
+    public static FileSystemManager getInstance(String filename, int totalsize){
+        if (instance == null){
+            instance = new FileSystemManager(null, totalsize);
+        }
+        return instance;
+    }
+    
+>>>>>>> 5ac88b7 (Add getInstance() to FileSystemManager singleton)
     // TODO: Add readFile, writeFile and other required methods,
 }
