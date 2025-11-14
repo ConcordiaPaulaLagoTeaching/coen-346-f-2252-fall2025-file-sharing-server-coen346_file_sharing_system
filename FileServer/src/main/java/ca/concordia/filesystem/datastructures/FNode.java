@@ -32,4 +32,19 @@ public class FNode {
     public void setNextBlock(short nextBlock) {
         this.nextBlock = nextBlock;
     }
+
+    public boolean isFree() {
+        return this.blockIndex == FREE;
+    }
+
+    public void reset(){
+        this.blockIndex = FREE;
+        this.nextBlock = NO_NEXT;
+    }
+
+    @Override
+    public String toString() {
+        return "FNode (block=" + blockIndex + ", next=" + nextBlock + ")";
+    }
+
 }
