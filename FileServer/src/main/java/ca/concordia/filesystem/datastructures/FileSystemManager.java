@@ -9,8 +9,6 @@ public class FileSystemManager {
     private static final int MAX_FILES = 5;
     private static final int MAX_BLOCKS = 10;
     private static final int BLOCK_SIZE = 128;
-
-    // FIX: test expects max length = 10
     private static final int MAX_FILENAME_LENGTH = 10;
 
     private final FEntry[] fileTable;
@@ -38,7 +36,6 @@ public class FileSystemManager {
             freeBlockList[i] = true;
     }
 
-    // --- CREATE ---
     public void createFile(String filename) throws Exception {
         writeLock.lock();
         try {
@@ -62,10 +59,6 @@ public class FileSystemManager {
             writeLock.unlock();
         }
     }
-
-
-
-    // --- LIST ---
     public String[] listFiles() {
         readLock.lock();
         try {
@@ -85,7 +78,6 @@ public class FileSystemManager {
         }
     }
 
-    // --- WRITE ---
     public void writeFile(String filename, byte[] data) throws Exception {
         writeLock.lock();
         try {
@@ -130,7 +122,6 @@ public class FileSystemManager {
         }
     }
 
-    // --- READ ---
     public byte[] readFile(String filename) throws Exception {
         readLock.lock();
         try {
@@ -155,7 +146,6 @@ public class FileSystemManager {
         }
     }
 
-    // --- DELETE ---
     public void deleteFile(String filename) throws Exception {
         writeLock.lock();
         try {
