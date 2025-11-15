@@ -9,7 +9,9 @@ public class FileSystemManager {
     private static final int MAX_FILES = 5;
     private static final int MAX_BLOCKS = 10;
     private static final int BLOCK_SIZE = 128;
-    private static final int MAX_FILENAME_LENGTH = 11;
+
+    // FIX: test expects max length = 10
+    private static final int MAX_FILENAME_LENGTH = 10;
 
     private final FEntry[] fileTable;
     private final FNode[] nodeTable;
@@ -41,11 +43,11 @@ public class FileSystemManager {
         writeLock.lock();
         try {
             if (filename == null || filename.length() > MAX_FILENAME_LENGTH)
-                throw new Exception("Invalid filename");
+                throw new Exception("Filename too long");
 
             for (FEntry e : fileTable)
                 if (e != null && e.getFilename().equals(filename))
-                    throw new Exception("Exists");
+                    throw new Exception("File already exists");
 
             for (int i = 0; i < fileTable.length; i++) {
                 if (fileTable[i] == null) {
@@ -53,11 +55,15 @@ public class FileSystemManager {
                     return;
                 }
             }
+
             throw new Exception("File table full");
+
         } finally {
             writeLock.unlock();
         }
     }
+
+
 
     // --- LIST ---
     public String[] listFiles() {
