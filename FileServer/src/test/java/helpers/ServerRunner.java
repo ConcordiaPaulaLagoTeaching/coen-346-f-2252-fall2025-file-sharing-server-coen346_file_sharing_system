@@ -1,7 +1,8 @@
 package helpers;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.time.Duration;
 import java.time.Instant;
 
@@ -9,14 +10,23 @@ public class ServerRunner {
     private Process process;
 
     public void start() throws IOException, InterruptedException {
-        process = new ProcessBuilder("java", "-cp", "target/classes", "ca.concordia.Main")
+
+        // Start the server using the correct main class
+        this.process = new ProcessBuilder(
+                "java",
+                "-cp",
+                "target/classes",
+                "ca.concordia.server.ServerMain"
+        )
                 .redirectErrorStream(true)
                 .start();
-        // Wait for port to become available (server ready)
+
+        // Wait until the server opens port 12345
         Instant start = Instant.now();
         while (!isPortOpen("localhost", 12345)) {
-            if (Duration.between(start, Instant.now()).getSeconds() > 10)
+            if (Duration.between(start, Instant.now()).getSeconds() > 10) {
                 throw new RuntimeException("Server failed to start within timeout");
+            }
             Thread.sleep(200);
         }
     }
@@ -25,16 +35,14 @@ public class ServerRunner {
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(host, port), 200);
             return true;
-        } catch (IOException ex) {
+        } catch (IOException e) {
             return false;
         }
     }
 
-
     public void stop() {
-        if (process != null && process.isAlive()) {
-            process.destroy();
+        if (this.process != null && this.process.isAlive()) {
+            this.process.destroy();
         }
     }
 }
-
